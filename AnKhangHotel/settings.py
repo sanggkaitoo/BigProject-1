@@ -68,6 +68,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'context_processors.context_processors.navbar_context_processor',
+                'context_processors.context_processors.footer_context_processor',
+                'context_processors.context_processors.room_list_context_processor',
             ],
         },
     },
@@ -138,3 +141,4 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

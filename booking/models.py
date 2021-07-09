@@ -1,4 +1,5 @@
 from django.db import models
+from AnKhangHotel import settings
 from room.models import Room
 from django.utils import timezone
 

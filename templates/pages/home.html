@@ -33,6 +33,7 @@
 
         <div id="container header">
             <div class="header-wrapper" style="background-image: url('{{ home_data.img_bg_footer.url }}')">
+            <div class="header-wrapper" style="bafckground-image: url('{{ home_data.img_bg_footer.url }}')">
                 <div class="background-overlay"></div>
                 <div class="container-lg">
                     <div class="header-content">
@@ -53,7 +54,8 @@
                             </p>
                         </div>
                         <div class="check-availability">
-                            <form action="search-availability">
+                            <form action="{% url 'search-result' %}" method="POST">
+                                {% csrf_token %}
                                 <p class="form-group">
                                     <label for="input_from">Check-in</label>
                                     <input
@@ -61,6 +63,8 @@
                                             class="form-control"
                                             id="input_from"
                                             placeholder="Check-in Date"
+                                            name="check_in_date"
+                                            required
                                     />
                                 </p>
                                 <p class="form-group">
@@ -70,17 +74,19 @@
                                             class="form-control"
                                             id="input_to"
                                             placeholder="Check-out Date"
+                                            name="check_out_date"
+                                            required
                                     />
                                 </p>
                                 <p class="form-group">
                                     <label for="select-adults"
-                                    >Adults</label
+                                    >Adult</label
                                     >
                                     <br/>
                                     <select
-                                            name="select-adults"
                                             id="select-adults"
                                             class="select-number"
+                                            name="adults_amount"
                                     >
                                         <option
                                                 value="1"
@@ -111,13 +117,13 @@
                                 </p>
                                 <p class="form-group">
                                     <label for="select-childrens"
-                                    >Childrens</label
+                                    >Children</label
                                     >
                                     <br/>
                                     <select
-                                            name="select-adults"
                                             id="select-childrens"
                                             class="select-number"
+                                            name="children_amount"
                                     >
                                         <option
                                                 value="0"
@@ -126,6 +132,28 @@
                                             0
                                         </option>
                                         <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </p>
+                                <p class="form-group">
+                                    <label for="amount-rooms"
+                                    >Room</label
+                                    >
+                                    <br/>
+                                    <select
+                                            id="amount-rooms"
+                                            class="select-number"
+                                            name="rooms_amount"
+                                    >
+                                        <option value="1" selected="selected">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>

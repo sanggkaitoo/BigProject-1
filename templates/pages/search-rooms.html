@@ -1,5 +1,6 @@
 {% extends 'pages/base/base.html' %}
 {% load static %}
+{% load mathfilters %}
 
 {% block cssblock %}
 
@@ -18,40 +19,66 @@
                     <div class="col-lg-8 infor-rooms-search">
                         <div class="number-rooms-found">
                             <p>
-                                2 accommodations found from July 3, 2021 - till July 4, 2021
+                                {{ rooms_amount }} accommodations found to suit your needs from {{ check_in_date }} to {{ check_out_date }}
                             </p>
                         </div>
-                        <div class="rooms-detail-fit">
-                            <a href="">
-                                <div class="img-rooms-detail" style="background-image: url('https://themegoods-cdn-pzbycso8wng.stackpathdns.com/hoteller/sites2/wp-content/uploads/2020/08/reisetopia-pSDe7ePo0Tc-unsplash-300x225.jpg')"></div>
-                            </a>
-                            <a href="">
-                                <h3 class="name-rooms">Deluxe Room</h3>
-                            </a>
-                            <p class="description-rooms">Deluxe Suite Soulful Minimal Style Enjoy your most glorious moments with Hoteller Required fields are followed by * Check-in Date * Check-out Date * Adults 123456789101112131415161718192021222324252627282930 Children 012345678910 Detail Calling all lovers of the Feng Shui principles to enter these […]</p>
-                            <p><i class="fas fa-chevron-right arrow"></i> Adutlts: </p>
-                            <p><i class="fas fa-chevron-right arrow"></i> Children: </p>
-                            <p><i class="fas fa-chevron-right arrow"></i> View: </p>
-                            <p><i class="fas fa-chevron-right arrow"></i> Size: </p>
-                            <p><i class="fas fa-chevron-right arrow"></i> Bed Type: </p>
-                            <p class="price-rooms"><span>Prices start at:</span> $ per night</p>
-                            <hr>
-                            <div class="rooms-amount row">
-                                <div class="col-lg-6 input-wrap">
-                                    <p><select name="room-number" id="room-number">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                    </select> of accommodations available</p>
+                        <div class="room-recommend-wrap">
+                            <form action="" class="form-recommend">
+                                {% for item in recommend_room %}
+                                    <div class="room-recommend-item row">
+                                        <div class="col-lg-10 name-recommend-item">
+                                            <p>{{ item.0 }} x {{ item.1.room_type }}</p>
+                                            <p>Max occupancy: {{ item.1.capacity_adults }} adults, {{ item.1.capacity_children }} children</p>
+                                        </div>
+                                        <div class="col-lg-2 price-recommend-item">
+                                            <p>${{ item.0|mul:item.1.price }}</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <div class="total-recommend">
+                                    <p>Total: ${{ total }}</p>
                                 </div>
-                                <div class="col-lg-6 remove-wrap">
-                                    <p>1 x "Signature Room" has been added to your reservation</p>
-                                    <a href="">Remove</a>
+                                <div class="button-recommend">
+                                    <input class="button" type="button" value="Confirm Reservation">
                                 </div>
-                            </div>
-                            <input class="button" type="button" value="Book">
-                            <input class="button" type="button" value="Confirm Reservation">
+                                <div class="clear"></div>
+                            </form>
+                        </div>
+                        <div class="room-list-wrap">
+                            {% for room_type_items in room_type_amount %}
+                                <div class="rooms-detail-fit">
+                                    <a href="{% url 'rooms-detail' room_type_items.1.pk %}">
+                                        <div class="img-rooms-detail" style="background-image: url('{{ room_type_items.1.img_horizontal.url }}')"></div>
+                                    </a>
+                                    <a href="">
+                                        <h3 class="name-rooms">{{ room_type_items.1.room_type }}</h3>
+                                    </a>
+                                    <p class="description-rooms">{{ room_type_items.1.description }}</p>
+                                    <p><i class="fas fa-chevron-right arrow"></i> Adutlts: {{ room_type_items.1.capacity_adults }}</p>
+                                    <p><i class="fas fa-chevron-right arrow"></i> Children: {{ room_type_items.1.capacity_children }}</p>
+                                    <p><i class="fas fa-chevron-right arrow"></i> View: {{ room_type_items.1.view }}</p>
+                                    <p><i class="fas fa-chevron-right arrow"></i> Size: {{ room_type_items.1.area }}</p>
+                                    <p><i class="fas fa-chevron-right arrow"></i> Bed Type: {{ room_type_items.1.bed }}</p>
+                                    <p class="price-rooms"><span>Prices start at:</span> ${{ room_type_items.1.price }} per night</p>
+                                    <hr>
+                                    <div class="rooms-amount row">
+                                        <div class="col-lg-6 input-wrap">
+                                            <p><select name="room-number" id="room-number">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select> of accommodations available</p>
+                                        </div>
+                                        <div class="col-lg-6 remove-wrap">
+                                            <p>1 x "Signature Room" has been added to your reservation</p>
+                                            <a href="">Remove</a>
+                                        </div>
+                                    </div>
+                                    <input class="button" type="button" value="Book">
+                                    <input class="button" type="button" value="Confirm Reservation">
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-lg-4 book-now-ready-to-book-wrap">
