@@ -1,0 +1,73 @@
+/* ====================== [ Slide Image Style ] ====================== */
+
+.slide-image-dining-content h3{
+    font-size: 45px;
+}
+
+.content-image-slide-wrap {
+    padding: 70px;
+    color:rgb(32, 32, 32);
+}
+
+.content-image-slide-wrapper {
+    font-size: 25px;
+}
+
+.link-about-room-details {
+    margin-top: 40px;
+    color: rgb(32, 32, 32);
+    border-bottom: 1px solid rgb(32, 32, 32);
+}
+
+.link-about-room-details:hover {
+    color: rgb(32, 32, 32);
+}
+
+/* ====================== [ End Slide Image Style ] ====================== */
+
+/* ====================== [ Image Prallax Style ] ====================== */
+
+.container-image-prallax {
+    height: 700px;
+    /*background-image: url(../../media/Image/aboutUSImage/slideImage/yann-maignan-376909-unsplash-1024x683.jpeg);*/
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* ====================== [ End Image Prallax Style ] ====================== */
+
+/* ====================== [ Menu Style ] ====================== */
+
+.text-menu-dining-wrap {
+    color: #fff;
+}
+
+.content-about-us-wrap {
+    padding: 20px 0;
+    font-size: 17px;
+}
+
+.about-us-rooms, .about-us-restaurant {
+    color: rgb(32, 32, 32);
+    font-size: 25px;
+    border-bottom: 1px solid rgb(32, 32, 32);
+    margin: 10px 0;
+}
+
+.about-us-rooms:hover, .about-us-restaurant:hover {
+    color: rgb(32, 32, 32);
+}
+
+.title-menu-dining-wrap .content-about-us-wrap {
+    margin-bottom: 50px;
+}
+
+.menu-dining-1:last-child {
+    margin-top: 70px;
+}
+
+.menu-dining-1:last-child .title-menu-dining-wrap h3, .menu-dining-1:last-child .content-about-us-wrap{
+    color: rgb(32, 32, 32);
+}
+
+/* ====================== [ End Menu Style ] ====================== */

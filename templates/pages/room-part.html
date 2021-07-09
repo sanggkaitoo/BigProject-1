@@ -1,0 +1,292 @@
+{% extends 'pages/base/base.html' %}
+{% load static %}
+{% load mathfilters %}
+
+{% block cssblock %}
+
+    <link rel="stylesheet" href="{% static 'css/Flickity/flickity.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/rooms.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/room-part.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/Rome/rome.css' %}" />
+
+{% endblock %}
+
+{% block content %}
+
+    <div id="content-container">
+
+        <!-- HEADER -->
+
+        <div
+            class="header-part-rooms"
+            style="
+                background-image: url({{ data.img_horizontal.url }});
+            "
+        >
+            <div class="container">
+                <div class="header-pr-wrap row">
+                    <div class="background-overlay font-Megante"></div>
+                    <div class="col-lg-12 title-header-pr font-Megante" data-relative-input="true" id="scene">
+                        <h2 data-depth="0.2">
+                            · {{ data.room_type }} Room · <br />
+                            More than meets the eye
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- INFOR DETAIL ROOM -->
+
+        <div class="container-infor-detail-room">
+            <div class="container infor-detail-room-wrap">
+                <div class="row">
+                    <div class="col-lg-4 text-infor-detail-room-wrap">
+                        <div class="big-title-infor-detail-room font-Megante">
+                            <h3>Detail</h3>
+                        </div>
+                        <div
+                            class="
+                                content-infor-detail-room
+                                font-Montserrat-L
+                            "
+                        >
+                            <p>
+                                {{ data.description }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 service-infor-detail-room-wrap">
+                        <div
+                            class="
+                                row
+                                content-service-infor-detail-room-wrap
+                                font-Montserrat-L
+                            "
+                        >
+                            <div class="col-lg-6">
+                                <p>{{ data.area }}m² (inc. terrace)</p>
+                                <p>{{ data.capacity_adults }} adults / {{ data.capacity_children}} child</p>
+                                <p>{{ data.get_bed_display }}</p>
+                                <p>{% if data.bathhub %}Bathhub{% endif %}</p>
+                                <p>{{ data.view }}</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p>{% if data.pillow_menu %}Pillow Menu{% endif %}</p>
+                                <p>{% if data.balcone %}Balcone{% endif %}</p>
+                                <p>{% if data.wifi %}High velocity wifi{% endif %}</p>
+                                <p>{% if data.gym_pool %}Gym & Pool{% endif %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE IMAGE ROOMS -->
+
+        <div class="container-slide-image-room">
+            <div
+                class="carousel-image-room">
+                <img
+                    src="{{ data.img_detail_rooms1.url }}"
+
+                />
+                <img
+                    src="{{ data.img_detail_rooms2.url }}"
+
+                />
+                <img
+                    src="{{ data.img_detail_rooms3.url }}"
+
+                />
+                <img
+                    src="{{ data.img_detail_rooms4.url }}"
+
+                />
+                <img
+                    src="{{ data.img_detail_rooms5.url }}"
+
+                />
+            </div>
+        </div>
+
+        <!-- READY TO BOOK -->
+
+        <div class="container-ready-to-book">
+            <div class="container container-ready-to-book-wrap">
+                <div class="row ready-to-book-wrap">
+                    <div class="col-lg-8 content-ready-to-book-wrap">
+                        <div class="tilte-ready-to-book font-Megante">
+                            <h3>Ready to book?</h3>
+                        </div>
+                        <div class="question-ready-to-book">
+                            <p>When would you like to stay?</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 book-now-ready-to-book-wrap">
+                        <div class="book-now-ready-to-book-container">
+                            <div class="title-book-now font-Montserrat-L">
+                                <p>BOOK NOW</p>
+                            </div>
+                            <div class="form-check-wrap">
+                                <form class="form-check font-Montserrat-L" action="search-availability">
+                                    <p class="form-group">
+                                        <label for="input_from">Check-in</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="input_from"
+                                            placeholder="Check-in Date"
+                                        />
+                                    </p>
+                                    <p class="form-group">
+                                        <label for="input_to">Check-out</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="input_to"
+                                            placeholder="Check-out Date"
+                                        />
+                                    </p>
+                                    <p class="form-group input-number">
+                                        <label for="select-adults"
+                                            >Adults</label
+                                        >
+                                        <br />
+                                        <select
+                                            name="select-adults"
+                                            id="select-adults"
+                                            class="select-number"
+                                        >
+                                            <option
+                                                value="1"
+                                                selected="selected"
+                                            >
+                                                1
+                                            </option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                            <option value="18">18</option>
+                                            <option value="19">19</option>
+                                            <option value="20">20</option>
+                                        </select>
+                                    </p>
+                                    <p class="form-group input-number">
+                                        <label for="select-childrensinput-number"
+                                            >Childrens</label
+                                        >
+                                        <br />
+                                        <select
+                                            name="select-adults"
+                                            id="select-childrens"
+                                            class="select-number"
+                                        >
+                                            <option
+                                                value="0"
+                                                selected="selected"
+                                            >
+                                                0
+                                            </option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </p>
+                                    <p class="form-group">
+                                        <input
+                                            type="submit"
+                                            class="button"
+                                            value="Check Avaiability"
+                                        />
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MORE ROOM -->
+
+        <div class="container-room-wrap">
+            <div class="room-wrap">
+                <div class="container-room">
+                    <header
+                            class="c-header c-header--archive c-header--project-list">
+                        <div class="c-mouse-vertical-carousel js-carousel u-media-wrapper u-media-wrapper--16-9 ">
+                            <div class="carosel-header font-Megante">
+                                <h2>Our Rooms</h2>
+                            </div>
+                            <ul class="c-mouse-vertical-carousel__list js-carousel-list" >
+                                {% for rooms in rooms_list %}
+                                    <li class="c-mouse-vertical-carousel__list-item js-carousel-list-item" data-item-id="{{ rooms.pk|sub:1 }}">
+                                        <a href="{% url 'rooms-detail' rooms.pk %}">
+                                            <p class="c-mouse-vertical-carousel__eyebrow u-b4">
+                                                <span>
+                                                    {{ rooms.pk }}
+                                                </span> FROM ${{ rooms.price }}/NIGHT
+                                            </p>
+
+                                            <p class=" c-mouse-vertical-carousel__title u-a5">
+                                                {{ rooms.room_type }} Room
+                                            </p>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            {% for rooms in rooms_list %}
+                                <i class="c-mouse-vertical-carousel__bg-img js-carousel-bg-img" style="background-image: url({{ rooms.img_horizontal.url }});"></i>
+                            {% endfor %}
+                            <i class="c-gradient-overlay"></i>
+                        </div>
+                    </header>
+                </div>
+            </div>
+
+            <div class="col-lg-6 text-center m-auto link-to-room">
+                <h2 class="font-Megante">
+                    {{ home_data.title_rooms }}
+                </h2>
+                <a href="{% url 'rooms-page' %}" class="font-Montserrat-L"> View all our room </a>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block jsblock%}
+
+    <script src="{% static 'js/Flickity/flickity.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/Rome/rome.js' %}"></script>
+    <script src="{% static 'js/room-part.js' %}"></script>
+    <script src="{% static 'js/rooms.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+
+{% endblock %}

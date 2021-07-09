@@ -1,0 +1,155 @@
+/* ====================== [ Navbar Style ] ====================== */
+
+.nav-bar {
+    background-color: rgb(32, 32, 32);
+}
+
+/* ====================== [ End Navbar Style ] ====================== */
+
+/* ====================== [ Cursor Style ] ====================== */
+
+.cursor-inner, .cursor-inner.cursor-hover {
+    background-color: rgb(32, 32, 32);
+}
+
+.cursor-outer {
+    border-color: rgb(32, 32, 32);
+}
+
+/* ====================== [ End Cursor Style ] ====================== */
+
+/* ====================== [ Left Style ] ====================== */
+
+#content-container {
+    padding-top: 90px;
+    font-family: 'Montserrat-Regular';
+    color: rgb(32, 32, 32);
+}
+
+.img-rooms-detail {
+    width: 100%;
+    height: 400px;
+    background-position: center;
+    background-size: cover;
+}
+
+.name-rooms {
+    color: rgb(32, 32, 32)
+}
+
+.arrow {
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.number-rooms-found {
+    padding: 40px 0;
+    font-size: 1.4em;
+    font-family: Montserrat-SemiBold;
+}
+
+.name-rooms {
+    padding-top: 40px;
+    font-family: Megante;
+}
+
+.description-rooms {
+    padding: 20px 0;
+}
+
+.price-rooms {
+    padding: 20px 0;
+}
+
+.price-rooms span {
+    font-family: Montserrat-SemiBold;
+}
+
+.input-room-amount {
+    width: 20%;
+}
+
+.remove-wrap p {
+    width: 80%;
+    margin: 0;
+    float: left;
+}
+
+.remove-wrap a {
+    color: rgb(32, 32, 32);
+    font-family: Montserrat-SemiBold;
+}
+
+.button {
+    color: rgb(32, 32, 32);
+    border: 1px solid;
+    border-color: rgb(32, 32, 32);
+    transition: .3s;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 0.6em 2.5em;
+    cursor: none !important;
+    width: auto;
+    margin: 40px 0;
+}
+
+.form-group .button {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.button:hover {
+    color: #fff;
+    background-color: rgb(32, 32, 32);
+}
+
+#room-number {
+    border: 1px solid rgb(32, 32, 32);
+    width: 12%;
+}
+
+/* ====================== [ End Left Style ] ====================== */
+
+/* ====================== [ Right Style ] ====================== */
+
+.title-book-now {
+    text-align: left;
+}
+
+.form-check {
+    padding: 0;
+}
+
+.book-now-ready-to-book-container {
+    padding: 10px 30px;
+}
+
+.title-book-now {
+    background-color: transparent;
+    font-size: 25px;
+    color: rgb(32, 32, 32);
+}
+
+.text-required {
+    padding: 20px 0;
+}
+
+.book-now-ready-to-book-wrap {
+    padding-top: 50px;
+    position: static;
+}
+
+.form-check {
+    padding-bottom: 30px;
+}
+
+.hotel-name {
+    font-size: 20px;
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+
+.hotel-tel {
+    margin: 0;
+}
+
+/* ====================== [ End Right Style ] ====================== */

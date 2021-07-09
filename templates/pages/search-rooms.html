@@ -1,0 +1,179 @@
+{% extends 'pages/base/base.html' %}
+{% load static %}
+
+{% block cssblock %}
+
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/room-part.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/search-rooms.css' %}" />
+
+{% endblock %}
+
+{% block content %}
+
+        <div id="content-container">
+            <div class="container">
+                <div class="row content-wrap">
+                    <div class="col-lg-8 infor-rooms-search">
+                        <div class="number-rooms-found">
+                            <p>
+                                2 accommodations found from July 3, 2021 - till July 4, 2021
+                            </p>
+                        </div>
+                        <div class="rooms-detail-fit">
+                            <a href="">
+                                <div class="img-rooms-detail" style="background-image: url('https://themegoods-cdn-pzbycso8wng.stackpathdns.com/hoteller/sites2/wp-content/uploads/2020/08/reisetopia-pSDe7ePo0Tc-unsplash-300x225.jpg')"></div>
+                            </a>
+                            <a href="">
+                                <h3 class="name-rooms">Deluxe Room</h3>
+                            </a>
+                            <p class="description-rooms">Deluxe Suite Soulful Minimal Style Enjoy your most glorious moments with Hoteller Required fields are followed by * Check-in Date * Check-out Date * Adults 123456789101112131415161718192021222324252627282930 Children 012345678910 Detail Calling all lovers of the Feng Shui principles to enter these […]</p>
+                            <p><i class="fas fa-chevron-right arrow"></i> Adutlts: </p>
+                            <p><i class="fas fa-chevron-right arrow"></i> Children: </p>
+                            <p><i class="fas fa-chevron-right arrow"></i> View: </p>
+                            <p><i class="fas fa-chevron-right arrow"></i> Size: </p>
+                            <p><i class="fas fa-chevron-right arrow"></i> Bed Type: </p>
+                            <p class="price-rooms"><span>Prices start at:</span> $ per night</p>
+                            <hr>
+                            <div class="rooms-amount row">
+                                <div class="col-lg-6 input-wrap">
+                                    <p><select name="room-number" id="room-number">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select> of accommodations available</p>
+                                </div>
+                                <div class="col-lg-6 remove-wrap">
+                                    <p>1 x "Signature Room" has been added to your reservation</p>
+                                    <a href="">Remove</a>
+                                </div>
+                            </div>
+                            <input class="button" type="button" value="Book">
+                            <input class="button" type="button" value="Confirm Reservation">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 book-now-ready-to-book-wrap">
+                        <div class="slidebar-wrap">
+                            <div class="book-now-ready-to-book-container">
+                                <div class="title-book-now font-Megante">
+                                    <p>Book Your Stay</p>
+                                </div>
+                                <p class="text-required">Required fields are followed by *</p>
+                                <div class="form-check-wrap">
+                                    <form class="form-check font-Montserrat-L" action="search-availability">
+                                        <p class="form-group">
+                                            <label for="input_from">Check-in *</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="input_from"
+                                                placeholder="Check-in Date"
+                                            />
+                                        </p>
+                                        <p class="form-group">
+                                            <label for="input_to">Check-out *</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="input_to"
+                                                placeholder="Check-out Date"
+                                            />
+                                        </p>
+                                        <p class="form-group input-number">
+                                            <label for="select-adults"
+                                                >Adults</label
+                                            >
+                                            <br />
+                                            <select
+                                                name="select-adults"
+                                                id="select-adults"
+                                                class="select-number"
+                                            >
+                                                <option
+                                                    value="1"
+                                                    selected="selected"
+                                                >
+                                                    1
+                                                </option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                            </select>
+                                        </p>
+                                        <p class="form-group input-number">
+                                            <label for="select-childrensinput-number"
+                                                >Childrens</label
+                                            >
+                                            <br />
+                                            <select
+                                                name="select-adults"
+                                                id="select-childrens"
+                                                class="select-number"
+                                            >
+                                                <option
+                                                    value="0"
+                                                    selected="selected"
+                                                >
+                                                    0
+                                                </option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </p>
+                                        <p class="form-group">
+                                            <input
+                                                type="submit"
+                                                class="button"
+                                                value="Check Avaiability"
+                                            />
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="infor-hotel">
+                                <p class="hotel-name font-Megante">An Khang Hotel</p>
+                                <p class="hotel-address">04 Hoang Van Thu, Sa Pa, Lao Cai</p>
+                                <p class="hotel-tel">Tel: </p>
+                                <p class="hotel-mail">Mail: </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block jsblock %}
+
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/StickyKit/jquery.sticky-kit.js' %}"></script>
+    <script src="{% static 'js/search-rooms.js' %}"></script>
+
+{% endblock %}

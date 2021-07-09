@@ -1,0 +1,91 @@
+/* ====================== [ Infor Address Style ] ====================== */
+
+.container-infor-address-wrap {
+    background-color: #000;
+}
+
+.infor-address-items {
+    padding: 50px;
+}
+
+.title-infor-address-items {
+    font-family: "Megante";
+}
+
+.content-infor-address-items {
+    font-family: "Montserrat-Light";
+}
+
+.triangle-wrap {
+    bottom: -5px;
+}
+
+.triangle {
+    transform: rotate(180deg);
+    height: 100%;
+}
+
+.triangle path{
+    fill: #fff;
+}
+
+/* ====================== [ End Infor Address Style ] ====================== */
+
+/* ====================== [ Form Questiọn Style ] ====================== */
+
+.container-form-question-wrap {
+    padding: 70px 0;
+    color: rgb(32, 32, 32);
+}
+
+.label-form-question {
+    width: 100%;
+}
+
+.input-form-question {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(32, 32, 32);
+    background-color: transparent;
+}
+
+.input-form-question:active {
+    border: none;
+}
+
+.input-form-question:focus {
+    outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.button-form-question {
+    width: 120px;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid rgb(32, 32, 32);
+    transition: .3s;
+}
+
+.button-form-question:hover {
+    background-color: rgb(32, 32, 32);
+    color: #fff;
+}
+
+.title-map-wrap {
+    color: rgb(32, 32, 32);
+    padding-bottom: 40px;
+}
+
+#eb-map-ff65be2 {
+    height: 600px;
+}
+
+.google-map-wrap {
+    padding-bottom: 40px;
+}
+
+/* ====================== [ End Form Questiọn Style ] ====================== */

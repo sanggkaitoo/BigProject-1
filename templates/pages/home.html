@@ -1,0 +1,561 @@
+{% extends 'pages/base/base.html' %}
+{% load static %}
+{% load mathfilters %}
+
+{% block cssblock %}
+
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/Rome/rome.css' %}"/>
+
+    <style>
+    .ms--images .ms-slide:nth-child(1) .ms-slide__image {
+        background-image: url('{{ home_data.img_nearby1.url }}');
+    }
+    .ms--images .ms-slide:nth-child(2) .ms-slide__image {
+            background-image: url('{{ home_data.img_nearby2.url }}');
+    }
+    .ms--images .ms-slide:nth-child(3) .ms-slide__image {
+            background-image: url('{{ home_data.img_nearby3.url }}');
+    }
+    .ms--images .ms-slide:nth-child(4) .ms-slide__image {
+        background-image: url('{{ home_data.img_nearby4.url }}');
+    }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+
+    <div id="content-container">
+
+        <!-- HEADER -->
+
+        <div id="container header">
+            <div class="header-wrapper" style="background-image: url('{{ home_data.img_bg_footer.url }}')">
+                <div class="background-overlay"></div>
+                <div class="container-lg">
+                    <div class="header-content">
+                        <div
+                                class="header-text font-Megante"
+                                data-relative-input="true"
+                                id="scene"
+                        >
+                            <h1 data-depth="0.2">
+                                <span>{{ home_data.big_title_header1 }}</span>
+                                <br/>
+                                <span>{{ home_data.big_title_header2 }}</span>
+                            </h1>
+                            <p class="test" data-depth="0.3">
+                                <span>
+                                    {{ home_data.small_title_header }}
+                                </span>
+                            </p>
+                        </div>
+                        <div class="check-availability">
+                            <form action="search-availability">
+                                <p class="form-group">
+                                    <label for="input_from">Check-in</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="input_from"
+                                            placeholder="Check-in Date"
+                                    />
+                                </p>
+                                <p class="form-group">
+                                    <label for="input_to">Check-out</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="input_to"
+                                            placeholder="Check-out Date"
+                                    />
+                                </p>
+                                <p class="form-group">
+                                    <label for="select-adults"
+                                    >Adults</label
+                                    >
+                                    <br/>
+                                    <select
+                                            name="select-adults"
+                                            id="select-adults"
+                                            class="select-number"
+                                    >
+                                        <option
+                                                value="1"
+                                                selected="selected"
+                                        >
+                                            1
+                                        </option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </p>
+                                <p class="form-group">
+                                    <label for="select-childrens"
+                                    >Childrens</label
+                                    >
+                                    <br/>
+                                    <select
+                                            name="select-adults"
+                                            id="select-childrens"
+                                            class="select-number"
+                                    >
+                                        <option
+                                                value="0"
+                                                selected="selected"
+                                        >
+                                            0
+                                        </option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </p>
+                                <p class="form-group">
+                                    <input
+                                            type="submit"
+                                            class="button"
+                                            value="Search"
+                                    />
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT US -->
+
+        <div class="container part-aboutUs">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div
+                            id="carouselExampleSlidesOnly"
+                            class="carousel slide"
+                            data-ride="carousel"
+                    >
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img
+                                        class="d-block w-100"
+                                        src="{{ home_data.img_bg_about_us1.url }}"
+                                        alt="First slide"
+                                />
+                            </div>
+                            <div class="carousel-item">
+                                <img
+                                        class="d-block w-100"
+                                        src="{{ home_data.img_bg_about_us2.url }}"
+                                        alt="Second slide"
+                                />
+                            </div>
+                            <div class="carousel-item">
+                                <img
+                                        class="d-block w-100"
+                                        src="{{ home_data.img_bg_about_us3.url }}"
+                                        alt="Third slide"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 text-aboutUs">
+                    <div class="content-aboutUs">
+                        <p class="font-Megante">{{ home_data.title_part_about_us }}</p>
+                        <h2 class="font-Megante">
+                            {{ home_data.title_about_us }}
+                        </h2>
+                        <div class="viewmore-button">
+                            <a href="{% url 'aboutUs-page' %}" class="font-Montserrat-L"
+                            >View More</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOME QUOES -->
+
+        <div class="container part-quoes">
+            <div class="row text-center font-Megante">
+                <div class="urban-unique col-lg-12">
+                    <p>{{ home_data.title_part_quotes }}</p>
+                </div>
+                <div class="title-quoes col-lg-5 m-auto">
+                    <h3>
+                        {{ home_data.title_quotes }}
+                    </h3>
+                </div>
+                <div class="small-quoes col-lg-12 font-Montserrat-L">
+                    <p>
+                        {{ home_data.small_text_quotes }}
+                    </p>
+                </div>
+                <div class="content-quoes col-lg-8 m-auto">
+                    <p>
+                        {{ home_data.content_text_quotes }}
+                    </p>
+                </div>
+                <div class="signature col-lg-12">
+                    <img src="{{ home_data.img_signature.url }}" alt=""/>
+                    <p>{{ home_data.position_writer }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROOM -->
+
+        <div class="container-room-wrap">
+            <div class="room-wrap">
+                <div class="container-room">
+                    <header
+                            class="c-header c-header--archive c-header--project-list">
+                        <div class="c-mouse-vertical-carousel js-carousel u-media-wrapper u-media-wrapper--16-9 ">
+                            <div class="carosel-header font-Megante">
+                                <h2>Our Rooms</h2>
+                            </div>
+                            <ul class="c-mouse-vertical-carousel__list js-carousel-list" >
+                                {% for rooms in rooms_list %}
+                                    <li class="c-mouse-vertical-carousel__list-item js-carousel-list-item" data-item-id="{{ rooms.pk|sub:1 }}">
+                                        <a href="{% url 'rooms-detail' rooms.pk %}">
+                                            <p class="c-mouse-vertical-carousel__eyebrow u-b4">
+                                                <span>
+                                                    {{ rooms.pk }}
+                                                </span> FROM ${{ rooms.price }}/NIGHT
+                                            </p>
+
+                                            <p class=" c-mouse-vertical-carousel__title u-a5">
+                                                {{ rooms.room_type }} Room
+                                            </p>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            {% for rooms in rooms_list %}
+                                <i class="c-mouse-vertical-carousel__bg-img js-carousel-bg-img" style="background-image: url({{ rooms.img_horizontal.url }});"></i>
+                            {% endfor %}
+                            <i class="c-gradient-overlay"></i>
+                        </div>
+                    </header>
+                </div>
+            </div>
+
+            <div class="col-lg-6 text-center m-auto link-to-room">
+                <h2 class="font-Megante">
+                    {{ home_data.title_rooms }}
+                </h2>
+                <a href="{% url 'rooms-page' %}" class="font-Montserrat-L"> View all our room </a>
+            </div>
+        </div>
+
+        <!-- RESTAURANT -->
+
+        <div class="container-restaurant">
+            <div class="container part-restaurant">
+                <div class="row">
+                    <div class="col-lg-5 content-restaurant-wrap">
+                        <div class="content-restaurant">
+                            <p class="font-Megante name-restaurant">
+                                Restaurants
+                            </p>
+                            <h2 class="font-Megante title-restaurant">
+                                {{ home_data.title_restaurant }}
+                            </h2>
+                            <div class="viewmore-button content-restaurant">
+                                <a href="{% url 'dining-page' %}" class="font-Montserrat-L">View our restaurants</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 image-restaurant">
+                        <img
+                            src="{{ home_data.img_dish.url }}"
+                            alt=""
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NEARBY PLACE -->
+
+        <div class="container-place-wrap">
+            <div class="content-place">
+                <div class="row text-center font-Megante">
+                    <div class="urban-unique col-lg-12">
+                        <p>Nearby Place</p>
+                    </div>
+                    <div class="title-quoes col-lg-5 m-auto">
+                        <h3>
+                            {{ home_data.title_nearby }}
+                        </h3>
+                    </div>
+                    <div class="small-quoes col-lg-8 m-auto font-Montserrat-L">
+                        <p>
+                            {{ home_data.small_text_nearby }}
+                        </p>
+                    </div>
+                    <div class="content-quoes col-lg-8 m-auto">
+                        <p>
+                            {{ home_data.content_text_nearby }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="container-place">
+                <main class="sliders-container">
+                    <ul class="pagination">
+                        <li class="pagination__item">
+                            <a class="pagination__button"></a>
+                        </li>
+                        <li class="pagination__item">
+                            <a class="pagination__button"></a>
+                        </li>
+                        <li class="pagination__item">
+                            <a class="pagination__button"></a>
+                        </li>
+                        <li class="pagination__item">
+                            <a class="pagination__button"></a>
+                        </li>
+                    </ul>
+                </main>
+            </div>
+        </div>
+
+        <!-- OFFERS -->
+
+        <div class="container part-offers text-center">
+            <div
+                    class="col-lg-8 m-auto text-center font-Megante text-offers"
+            >
+                <p>Offers</p>
+            </div>
+            <div class="small-text-offers font-Montserrat-L">
+                <p>{{ home_data.small_text_offers }}</p>
+            </div>
+
+            <div class="image-wrap">
+                <div class="image-offers">
+                    <div class="offers-image image1">
+                        <a href="" data-toggle="modal" data-target="#EnterEmail"></a>
+                        <img
+                                src="{{ home_data.img_offers1.url }}"
+                                alt=""
+                        />
+                        <div class="inner-image text-center">
+                            <div class="header-image font-Megante">
+                                <h2>Free Breakfast Include</h2>
+                            </div>
+                            <div class="content-image font-Montserrat-L">
+                                <p>
+                                    Breakfast included when booking the
+                                    Junior Suite
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offers-image image1">
+                        <a href="" data-toggle="modal" data-target="#EnterEmail"></a>
+                        <img
+                                src="{{ home_data.img_offers2.url }}"
+                                alt=""
+                        />
+                        <div class="inner-image text-center">
+                            <div class="header-image font-Megante">
+                                <h2>10% for advanced booking</h2>
+                            </div>
+                            <div class="content-image font-Montserrat-L">
+                                <p>
+                                    Benefit from a 10% discount,
+                                    reservations with a minimum of 3 days in
+                                    advance
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offers-image image1 offers-image-last">
+                        <a href="" data-toggle="modal" data-target="#EnterEmail"></a>
+                        <img
+                                src="{{ home_data.img_offers3.url }}"
+                                alt=""
+                        />
+                        <div class="inner-image text-center">
+                            <div class="header-image font-Megante te">
+                                <h2>15% for non refundable</h2>
+                            </div>
+                            <div class="content-image font-Montserrat-L">
+                                <p>
+                                    Benefit from a 15% discount, making your
+                                    reservations with a minimum of 15 days
+                                    in advance
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="EnterEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title font-Megante" id="exampleModalLongTitle">Enter mail to get offers</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span class="close-button" aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="post">
+                            <input type="email" placeholder="Your email address">
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block jsblock %}
+
+    <script src="{% static 'js/Rome/rome.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/home.js' %}"></script>
+
+    <script>
+        /* ====================== [ Synchronized Sliders Carousel JS ] ====================== */
+
+        (function () {
+
+            var slidersContainer = document.querySelector('.sliders-container');
+
+            // Initializing the numbers slider
+            var msNumbers = new MomentumSlider({
+                el: slidersContainer,
+                cssClass: 'ms--numbers',
+                range: [1, 4],
+                rangeContent: function (i) {
+                    return '0' + i;
+                },
+                style: {
+                    transform: [{
+                        scale: [0.4, 1]
+                    }],
+                    opacity: [0, 1]
+                },
+                interactive: false
+            });
+
+            // Initializing the titles slider
+            var titles = [
+                '{{ home_data.text_nearby1 }}',
+                '{{ home_data.text_nearby2 }}',
+                '{{ home_data.text_nearby3 }}',
+                '{{ home_data.text_nearby4 }}',
+            ];
+            var msTitles = new MomentumSlider({
+                el: slidersContainer,
+                cssClass: 'ms--titles',
+                range: [0, 3],
+                rangeContent: function (i) {
+                    return '<h3>' + titles[i] + '</h3>';
+                },
+                vertical: true,
+                reverse: true,
+                style: {
+                    opacity: [0, 1]
+                },
+                interactive: false
+            });
+
+            // Initializing the links slider
+            var msLinks = new MomentumSlider({
+                el: slidersContainer,
+                cssClass: 'ms--links',
+                range: [0, 3],
+                rangeContent: function () {
+                    return '<a class="ms-slide__link"></a>';
+                },
+                vertical: true,
+                interactive: false
+            });
+
+            // Get pagination items
+            var pagination = document.querySelector('.pagination');
+            var paginationItems = [].slice.call(pagination.children);
+
+            // Initializing the images slider
+            var msImages = new MomentumSlider({
+                // Element to append the slider
+                el: slidersContainer,
+                // CSS class to reference the slider
+                cssClass: 'ms--images',
+                // Generate the 4 slides required
+                range: [0, 3],
+                rangeContent: function () {
+                    return '<div class="ms-slide__image-container"><div class="ms-slide__image"></div></div>';
+                },
+                // Syncronize the other sliders
+                sync: [msNumbers, msTitles, msLinks],
+                // Styles to interpolate as we move the slider
+                style: {
+                    '.ms-slide__image': {
+                        transform: [{
+                            scale: [1.5, 1]
+                        }]
+                    }
+                },
+                // Update pagination if slider change
+                change: function (newIndex, oldIndex) {
+                    if (typeof oldIndex !== 'undefined') {
+                        paginationItems[oldIndex].classList.remove('pagination__item--active');
+                    }
+                    paginationItems[newIndex].classList.add('pagination__item--active');
+                }
+            });
+
+            // Select corresponding slider item when a pagination button is clicked
+            pagination.addEventListener('click', function (e) {
+                if (e.target.matches('.pagination__button')) {
+                    var index = paginationItems.indexOf(e.target.parentNode);
+                    msImages.select(index);
+                }
+            });
+
+        })();
+
+
+        /* ====================== [ End Synchronized Sliders Carousel JS ] ====================== */
+
+    </script>
+
+{% endblock %}

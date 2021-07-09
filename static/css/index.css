@@ -1,0 +1,279 @@
+@font-face {
+	font-family: "Montserrat";
+	src: url(../Font/Montserrat);
+}
+
+@font-face {
+	font-family: "BeatDownBB";
+	src: url(../Font/beatdown_bb);
+}
+
+body {
+	background-size: cover;
+	font-family: "Montserrat-SemiBold";
+	font-size: 0.9rem;
+	margin: 0;
+}
+
+.big-content {
+	background-color: rgba(0, 0, 0, 0.2);
+	width: 100%;
+	height: 100%;
+}
+
+::selection {
+	background-color: #000;
+	color: #fff;
+}
+
+.big-content, .nav-bar {
+	color: #FFF;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* ====================== [ Cursor Style ] ====================== */
+
+* {
+	cursor: none;
+}
+
+.mouse-cursor {
+	position: fixed;
+	left: 0;
+	top: 0;
+	pointer-events: none;
+	border-radius: 50%;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	visibility: hidden;
+}
+
+.cursor-inner {
+	margin-left: 2px;
+	margin-top: 2px;
+	width: 6px;
+	height: 6px;
+	z-index: 10000001;
+	background-color: #FFF;
+	-webkit-transition: width .3s ease-in-out,
+	height .3s ease-in-out,
+	margin .3s ease-in-out,
+	opacity .3s ease-in-out;
+	-o-transition: width .3s ease-in-out,
+	height .3s ease-in-out,
+	margin .3s ease-in-out,
+	opacity .3s ease-in-out;
+	transition: width .3s ease-in-out,
+	height .3s ease-in-out,
+	margin .3s ease-in-out,
+	opacity .3s ease-in-out;
+}
+
+.cursor-inner.cursor-hover {
+	margin-left: -40px;
+	margin-top: -40px;
+	width: 80px;
+	height: 80px;
+	background-color: #FFF;
+	opacity: .3; 
+}
+
+.cursor-outer {
+	margin-left: -15px;
+	margin-top: -15px;
+	width: 40px;
+	height: 40px;
+	border: 1px solid #FFF;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	z-index: 10000000;
+	opacity: .5;
+	-webkit-transition: all .08s ease-out;
+	-o-transition: all .08s ease-out;
+	transition: all .08s ease-out; }
+	.cursor-outer.cursor-hover {
+	opacity: 0;
+}
+
+/* ====================== [ End Cursor Style ] ====================== */
+
+/* ====================== [ Navbar Style ] ====================== */
+
+a {
+	color: #FFF;
+}
+
+.nav-bar {
+	z-index: 1000;
+}
+
+a p {
+	margin: 0;
+	padding: 0;
+}
+
+.nav-logo img{
+	height: 40px;
+}
+
+.nav-logo {
+	transition: 0.5s;
+}
+
+.nav-logo:hover {
+	color: #FFF;
+	transform: scale(1.1);
+	text-decoration: none;
+}
+
+.nav-bar {
+	position: fixed;
+	display: -webkit-box;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	padding: 25px 100px;
+}
+
+.nav-items {
+	margin-left: auto;
+	height: 100%;
+}
+
+.items {
+	position: relative;
+	display: flex;
+	-webkit-box-align: center;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+.items li {
+	margin: 0 35px;
+}
+
+.items li:first-child {
+	margin-left: 0;
+}
+
+.items li:last-child {
+	margin-right: 0;
+}
+
+.items li a {
+	position: relative;
+	display: block;
+	text-decoration: none;
+	color: #FFF;
+	text-transform: uppercase;
+	padding: 4px 0;
+	transition: 0.5s;
+}
+
+.items li p {
+	margin: 0;
+	justify-content: center;
+	height: 100%;
+}
+
+.items li a::after {
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 2px;
+	top: 100%;
+	left: 0;
+	background: #FFF;
+	transition: transform 0.5s;
+	transform: scaleX(0);
+	transform-origin: right;
+}
+
+.items li a:hover::after {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
+.active::after {
+	transform: scaleX(1) !important;
+}
+
+.dropdown-bar {
+	/* display: none; */
+	position: absolute;
+	transition: visibility 0s, opacity 0.5s linear;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.dropdown-bar a {
+	margin-top: -30px;
+	transition: all 0.5s;
+}
+
+.dropdown-bar-container:hover .dropdown-bar a {
+	margin-top: 0;
+}
+
+.dropdown-bar-container:hover .dropdown-bar{
+	/* display: block; */
+	opacity: 1;
+	visibility: visible;
+}
+
+/* ====================== [ End Navbar Style ] ====================== */
+
+/* ====================== [ Big content ] ====================== */
+
+.big-title-index {
+	width: 75%;
+	margin: auto;
+}
+
+.big-content {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	/* margin: -10vh 0; */
+}
+
+.big-title p{
+	font-size: 50pt;
+	letter-spacing: 20px;
+	margin-bottom: 30px;
+}
+
+.relax {
+	font-family: "BeatDownBB";
+	font-size: 70pt;
+}
+
+.button-book {
+	font-size: 25px;
+}
+
+.button-book span{
+	/* width: 30%; */
+	border-style: solid;
+	border-radius: 50px;
+
+	padding: 15px 35px;
+}
+
+#toBook {
+	pointer-events: auto;
+}
+
+#toBook a:hover{
+	color: #FFF;
+	text-decoration: none;
+}
+
+/* ====================== [ End Big content ] ====================== */

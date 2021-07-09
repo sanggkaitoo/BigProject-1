@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<head>
+	<html lang="en">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Khách sạn An Khang</title>
+	<link rel="stylesheet" href="{% static 'css/Bootstrap/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+	<link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body style="background-image:url('{{ index_data.img_bg.url }}')">
+	<div class="mouse-cursor cursor-outer"></div>
+	<div class="mouse-cursor cursor-inner"></div>
+	<div class="nav-bar">
+		<a class="nav-logo" href="{% url 'index-page' %}">
+			<img src="{{ common_data.logo_navbar.url }}" alt="">
+		</a>
+		<nav class="nav-items">
+			<ul class="items">
+				<li><a href="{% url 'home-page' %}">HOME</a></li>
+				<li class="dropdown-bar-container">
+					<a href="{% url 'rooms-page' %}">ROOMS</a>
+					<div class="dropdown-bar">
+						<a href="">Superior Room</a>
+						<a href="">Deluxe Room</a>
+						<a href="">Singature Room</a>
+						<a href="">Luxury Suite Room</a>
+					</div>
+				</li>
+				<li class="dropdown-bar-container">
+					<a href="{% url 'dining-page' %}">DINING</a>
+				</li>
+				<li><a href="{% url 'aboutUs-page' %}">ABOUT US</a></li>
+				<li><a href="{% url 'contact-page' %}">CONTACT</a></li>
+				<li class="dropdown-bar-container">
+					<a>
+						EN
+						<i class="fas fa-chevron-down"></i>
+					</a>
+					<div class="dropdown-bar">
+						<a href="">VN</a>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<header>
+		<div class="big-content">
+			<div data-relative-input="true" id="scene">
+				<div data-depth="0.2" class="big-title">
+					<p class="big-title-index">{{ index_data.big_title }} <span class="relax">{{ index_data.text_change }}</span></p>
+				</div>
+			</div>
+			<div data-relative-input="true" id="scene2" class="parallax-wrap">
+				<div data-depth="0.5" class="button-book" id="toBook">
+					<a href="{% url 'home-page' %}"><span id="book-now">{{ index_data.text_button }}</span></a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<script src="{% static 'js/Jquery v3.3.1/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static 'js/Parallax/parallax.js' %}"></script>
+	<script src="{% static 'js/index.js' %}"></script>
+	<script src="{% static 'js/common.js' %}"></script>
+</body>
+</html>

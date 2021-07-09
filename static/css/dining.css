@@ -1,0 +1,145 @@
+/* ====================== [ Slide Image Style ] ====================== */
+
+.slide-image-dining-content {
+    color: rgb(32, 32, 32);
+    padding: 70px 0;
+}
+
+.slide-image-dining-content p {
+    font-size: 24px;
+}
+
+/* ====================== [ End Slide Image Style ] ====================== */
+
+/* ====================== [ Menu Dining Style ] ====================== */
+
+.container-menu-dining {
+    padding-top: 170px;
+    padding-bottom: 100px;
+}
+
+.text-menu-dining-wrap {
+    margin: auto 0;
+    padding: 30px 50px;
+}
+
+.image-menu-dining-wrap img {
+    width: 500px;
+}
+
+.container-menu-dining-wrap:first-child {
+    color: rgb(32, 32, 32);
+}
+
+.title-menu-dining-wrap, .name-dish-menu, .price-dish-menu {
+    font-family: "Megante";
+}
+
+.title-menu-dining-wrap h3{
+    font-size: 50px;
+}
+
+.content-menu-dining-wrap {
+    padding: 20px 0;
+}
+
+.dish-menu-items {
+    padding: 10px 0;
+}
+
+.dish-menu-items:last-child {
+    padding: 0;
+}
+
+.name-dish-menu {
+    width: 1%;
+    white-space: nowrap;
+    padding-right: 5px;
+    display: table-cell;
+}
+
+.dot-dish-menu {
+    width: 98%;
+    height: 3px;
+    border-bottom: 2px dotted #000;
+    display: table-cell;
+    z-index: 1;
+    position: relative;
+    bottom: 13px;
+    border-width: .2em;
+}
+
+.price-dish-menu {
+    display: table-cell;
+    width: 1%;
+    padding-left: 7px;
+    white-space: nowrap;
+}
+
+.title-chef-selection {
+    font-family: "Megante";
+    font-size: 20px;
+    background-color: rgb(32, 32, 32);
+    color: #fff;
+    padding: 5px 15px;
+}
+
+.chef-selection .content-dish-menu-items-wrap {
+    border: 1px solid rgb(32, 32, 32);
+    padding: 10px 20px;
+}
+
+.name-dish-menu h3{
+    font-size: 20px;
+}
+
+.price-dish-menu span {
+    font-size: 25px;
+}
+
+.price-sale {
+    font-size: 20px !important;
+    color:rgb(255, 255, 255, 0.4);
+    text-decoration: line-through;
+}
+
+.middle-text-menu-dining-wrap h3{
+    padding: 70px 0;
+    font-size: 45px;
+}
+
+.menu-dining-2 {
+    color: #fff;
+}
+
+.menu-dining-2 .dot-dish-menu, .menu-dining-2 .chef-selection .content-dish-menu-items-wrap{
+    border-color: #fff;
+}
+
+.menu-dining-2 .title-chef-selection {
+    background-color: #fff;
+    color:rgb(32, 32, 32);
+}
+
+/* ====================== [ End Menu Dining Style ] ====================== */
+
+/* ====================== [ Dish Image Style ] ====================== */
+
+.container-dish-image {
+    padding-bottom: 170px;
+}
+
+.dish-image:last-child {
+    margin: auto 0;
+}
+
+.dish-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.dish-image {
+    padding: 0 40px;
+}
+
+/* ====================== [ End Dish Image Style ] ====================== */

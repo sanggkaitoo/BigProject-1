@@ -1,0 +1,127 @@
+/* ====================== [ End Header Style ] ====================== */
+
+.title-booking-confirm h3 {
+    padding: 60px 0;
+    font-size: 4em;
+}
+
+.number-rooms-found {
+    font-family: Montserrat-Light;
+    font-size: 1em;
+}
+
+.font-Montserrat-B {
+    font-family: Montserrat-Bold;
+}
+
+.index-accommnodation {
+    font-size: 1.2em;
+}
+
+.number-people {
+    background-color: #f9f8f6;
+    padding: 20px;
+}
+
+.guest-name {
+    padding: 30px 0;
+}
+
+.guest-name-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgb(32, 32, 32);
+    background-color: transparent;
+    padding: 10px;
+}
+
+.guest-name-input:focus-visible {
+    outline: none;
+}
+
+.coupon-code {
+    padding: 70px 0;
+}
+
+.coupon-input {
+    border: 0;
+    border-bottom: 1px solid rgb(32, 32, 32);
+    width: 20%;
+    padding: 10px
+}
+
+.coupon-input:focus-visible {
+    outline: none;
+}
+
+.coupon-check {
+    margin: 30px 0;
+    padding: 10px;
+    width: 15%;
+    background-color: transparent;
+    border: 1px solid rgb(32, 32, 32);
+    transition: .3s;
+}
+
+.coupon-check:hover {
+    background-color: rgb(32, 32, 32);
+    color: #fff;
+}
+
+.title {
+    font-size: 1.3em;
+}
+
+.price-detail, .price-total {
+    padding: 10px 10px;
+    border-bottom: 1px dotted rgb(32, 32, 32);
+}
+
+.price-total {
+    font-family: Montserrat-SemiBold;
+}
+
+.price-detail-wrap p{
+    margin: 10px 0;
+}
+
+.price-detail-wrap {
+    padding-bottom: 30px;
+}
+
+.guest-infor {
+    padding-top: 30px;
+    padding-bottom: 60px;
+}
+
+.input-guest-infor input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid rgb(32, 32, 32);
+}
+
+.required-text {
+    font-size: 0.7em;
+}
+
+.payment-method-text {
+    font-family: Montserrat-SemiBold;
+}
+
+.send-button input {
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    border: 1px solid rgb(32, 32, 32);
+    transition: 0.3s;
+}
+
+.send-button input:hover {
+    background-color: rgb(32, 32, 32);
+    color: #fff;
+}
+
+.total-wrap {
+    font-size: 1.3em;
+}

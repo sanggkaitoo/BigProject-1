@@ -1,0 +1,253 @@
+{% extends 'pages/base/base.html' %}
+{% load static %}
+
+{% block cssblock %}
+
+        <link rel="stylesheet" href="{% static 'css/Flickity/flickity.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/rooms.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/room-part.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/dining.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/Rome/rome.css' %}" />
+
+
+{% endblock %}
+
+{% block content %}
+
+    <div id="content-container">
+        <!-- HEADER -->
+
+        <div
+            class="header-part-rooms"
+            style="
+                background-image: url({{ dining_data.img_bg_header.url }});
+            "
+        >
+            <div class="container">
+                <div class="header-pr-wrap row">
+                    <div class="background-overlay font-Megante"></div>
+                    <div class="col-lg-12 title-header-pr font-Megante" data-relative-input="true" id="scene">
+                        <h2 data-depth="0.2">
+                            {{ dining_data.title_header1 }}
+                        </h2>
+                        <h2 data-depth="0.3">
+                            {{ dining_data.title_header2 }}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE IMAGE ROOMS -->
+
+        <div class="container-slide-image-room">
+            <div class="container">
+                <div class="row slide-image-dining-wrap">
+                    <div
+                        class="
+                            col-lg-7
+                            m-auto
+                            text-center
+                            font-Montserrat-L
+                            slide-image-dining-content
+                        "
+                    >
+                        <p>
+                            {{ aboutUs_data.title_rooms }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-image-room">
+                <img
+                    src="{{ dining_data.img_slide1.url }}"
+                />
+                <img
+                    src="{{ dining_data.img_slide2.url }}"
+                />
+                <img
+                    src="{{ dining_data.img_slide3.url }}"
+                />
+                <img
+                    src="{{ dining_data.img_slide4.url }}"
+                />
+            </div>
+        </div>
+
+        <!-- MENU -->
+
+        <div class="container-menu-dining">
+            <div class="container container-menu-dining-wrap">
+                <div class="row menu-dining-wrap menu-dining-1">
+                    <div class="col-lg-6 image-menu-dining-wrap">
+                        {% for menu in menu_data %}
+                            {% if menu.name_menu == dining_data.menu1.name_menu %}
+                                <img src="{{ menu.img_menu.url }}" alt=""/>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="col-lg-6 text-menu-dining-wrap">
+                        <div class="title-menu-dining-wrap">
+                            <h3>{{ dining_data.menu1.name_menu }}</h3>
+                        </div>
+                        <div class="content-menu-dining-wrap">
+                            {% for dish in dish_menu %}
+                                {% if dish.name_menu == dining_data.menu1 %}
+                                    {% if dish.special %}
+                                        <div class="dish-menu-items chef-selection">
+                                            <div class="title-chef-selection">
+                                                <span>Chef selection</span>
+                                            </div>
+                                            <div class="content-dish-menu-items-wrap">
+                                                <div class="content-dish-menu-items">
+                                                    <div class="name-dish-menu">
+                                                        <h3>{{ dish.name_food }}</h3>
+                                                    </div>
+                                                    <div class="dot-dish-menu"></div>
+                                                    <div class="price-dish-menu">
+                                                        {% if dish.sale %}
+                                                            <span class="price-sale" style="color:rgba(32, 32, 32, 0.2)">${{ dish.sale_price }}</span>
+                                                        {% endif %}
+                                                        <span>${{ dish.price_food }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-dish-menu font-Montserrat-L">
+                                                    <p>
+                                                        {{ dish.description_food }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="dish-menu-items">
+                                            <div class="content-dish-menu-items-wrap">
+                                                <div class="content-dish-menu-items">
+                                                    <div class="name-dish-menu">
+                                                        <h3>{{ dish.name_food }}</h3>
+                                                    </div>
+                                                    <div class="dot-dish-menu"></div>
+                                                    <div class="price-dish-menu">
+                                                        {% if dish.sale %}
+                                                            <span class="price-sale" style="color:rgba(32, 32, 32, 0.2)">${{ dish.sale_price }}</span>
+                                                        {% endif %}
+                                                        <span>${{ dish.price_food }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-dish-menu font-Montserrat-L">
+                                                    <p>
+                                                        {{ dish.description_food }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif%}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="middle-text-menu-dining-wrap font-Megante text-center">
+                    <h3>{{ aboutUs_data.big_title1 }}<br>{{ aboutUs_data.big_title2 }}</h3>
+                </div>
+                <div class="row menu-dining-wrap menu-dining-2">
+                    <div class="col-lg-6 text-menu-dining-wrap">
+                        <div class="title-menu-dining-wrap">
+                            <h3>{{ dining_data.menu2.name_menu }}</h3>
+                        </div>
+                        <div class="content-menu-dining-wrap">
+                            {% for dish in dish_menu %}
+                                {% if dish.name_menu == dining_data.menu2 %}
+                                    {% if dish.special %}
+                                        <div class="dish-menu-items chef-selection">
+                                            <div class="title-chef-selection">
+                                                <span>New</span>
+                                            </div>
+                                            <div class="content-dish-menu-items-wrap">
+                                                <div class="content-dish-menu-items">
+                                                    <div class="name-dish-menu">
+                                                        <h3>{{ dish.name_food }}</h3>
+                                                    </div>
+                                                    <div class="dot-dish-menu"></div>
+                                                    <div class="price-dish-menu">
+                                                        {% if dish.sale %}
+                                                            <span class="price-sale">${{ dish.sale_price }}</span>
+                                                        {% endif %}
+                                                        <span>${{ dish.price_food }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-dish-menu font-Montserrat-L">
+                                                    <p>
+                                                        {{ dish.description_food }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="dish-menu-items">
+                                            <div class="content-dish-menu-items-wrap">
+                                                <div class="content-dish-menu-items">
+                                                    <div class="name-dish-menu">
+                                                        <h3>{{ dish.name_food }}</h3>
+                                                    </div>
+                                                    <div class="dot-dish-menu"></div>
+                                                    <div class="price-dish-menu">
+                                                        {% if dish.sale %}
+                                                            <span class="price-sale">${{ dish.sale_price }}</span>
+                                                        {% endif %}
+                                                        <span>${{ dish.price_food }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-dish-menu font-Montserrat-L">
+                                                    <p>
+                                                        {{ dish.description_food }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif%}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-lg-6 image-menu-dining-wrap">
+                        {% for menu in menu_data %}
+                            {% if menu.name_menu == dining_data.menu1.name_menu %}
+                                <img src="{{ menu.img_menu.url }}" alt=""/>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DISH IMAGE -->
+
+        <div class="container-dish-image">
+            <div class="container container-dish-image-wrap">
+                <div class="row dish-image-wrap" data-relative-input="true" id="scene2">
+                    <div class="col-lg-6 dish-image" data-depth="0.2">
+                        <img width="786" height="1061" src="{{ dining_data.img_intro1.url }}" alt="">
+                    </div>
+                    <div class="col-lg-6 dish-image" data-depth="0.3">
+                        <img width="786" height="513" src="{{ dining_data.img_intro2.url }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block jsblock %}
+
+    <script src="{% static 'js/Flickity/flickity.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/Rome/rome.js' %}"></script>
+    <script src="{% static 'js/room-part.js' %}"></script>
+    <script src="{% static 'js/rooms.js' %}"></script>
+    <script src="{% static 'js/dining.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+
+{% endblock %}

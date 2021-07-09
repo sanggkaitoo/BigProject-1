@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Khách sạn An Khang</title>
+
+        <!--  Common css  -->
+
+        <link rel="stylesheet" href="{% static 'css/Bootstrap/bootstrap.css' %}" />
+        <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}" />
+
+        {% block cssblock %}
+        {% endblock %}
+
+    </head>
+    <body>
+
+        {% include 'pages/base/header.html' %}
+
+        {% block content %}
+        {% endblock %}
+
+        {% include 'pages/base/footer.html' %}
+
+            <!-- Common Js -->
+
+            <script src="{% static 'js/Jquery v3.3.1/jquery-3.3.1.min.js' %}"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+            <script src="https://rawgit.com/lmgonzalves/momentum-slider/master/dist/momentum-slider.min.js"></script>
+            <script src="{% static 'js/Bootstrap v4.6/bootstrap.js' %}"></script>
+            <script src="{% static 'js/Parallax/parallax.js' %}"></script>
+
+        {% block jsblock %}
+        {% endblock %}
+
+            <script src="{% static 'js/common.js' %}"></script>
+
+    </body>
+</html>

@@ -1,0 +1,8 @@
+asgiref==3.3.4
+certifi==2021.5.30
+Django==3.2.4
+django-mathfilters==1.0.0
+olefile==0.46
+Pillow @ file:///opt/concourse/worker/volumes/live/36fa9bfe-eb93-4355-7a91-4b76d2c08b7e/volume/pillow_1617386161687/work
+pytz==2021.1
+sqlparse==0.4.1

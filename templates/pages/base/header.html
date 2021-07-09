@@ -1,0 +1,45 @@
+<!-- CURSOR  -->
+
+<div class="mouse-cursor cursor-outer"></div>
+<div class="mouse-cursor cursor-inner"></div>
+
+<!-- NAV BAR -->
+
+<div class="nav-bar">
+    <a class="nav-logo" href="{% url 'index-page' %}">
+        <img src="{{ common_data.logo_navbar.url }}" alt="">
+    </a>
+    <nav class="nav-items">
+        <ul class="items">
+            <li><a href="{% url 'home-page' %}" class="{% if navbar == 'home' %}active{% endif %}">HOME</a></li>
+            <li class="dropdown-bar-container">
+                <a href="{% url 'rooms-page' %}" class="{% if navbar == 'rooms' %}active{% endif %}">ROOMS</a>
+                <div class="dropdown-bar">
+                    {% for rooms in rooms_list %}
+                        <a href="{% url 'rooms-detail' rooms.pk %}" class="{% if rooms.pk == data.pk %}active{% endif %}">{{ rooms.room_type }} Room</a>
+                    {% endfor %}
+                </div>
+            </li>
+            <li class="dropdown-bar-container">
+                <a href="{% url 'dining-page' %}" class="{% if navbar == 'dining' %}active{% endif %}">DINING</a>
+            </li>
+            <li><a href="{% url 'aboutUs-page' %}" class="{% if navbar == 'aboutUs' %}active{% endif %}">ABOUT US</a></li>
+            <li><a href="{% url 'contact-page' %}" class="{% if navbar == 'contact' %}active{% endif %}">CONTACT</a></li>
+            <li class="dropdown-bar-container">
+                <a>
+                    EN
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-bar">
+                    <a href="">VN</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<!-- TO TOP -->
+
+<a href="" class="to-top text-center" onclick="page_scrollToTop()">
+    <i class="fal fa-chevron-up"></i>
+</a>

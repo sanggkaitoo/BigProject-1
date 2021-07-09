@@ -1,0 +1,251 @@
+{% extends 'pages/base/base.html' %}
+{% load static %}
+
+
+{% block cssblock %}
+
+    <link rel="stylesheet" href="{% static 'css/Flickity/flickity.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/rooms.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/room-part.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/dining.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/about-us.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/Rome/rome.css' %}" />
+
+{% endblock %}
+
+{% block content %}
+
+        <div id="content-container">
+
+            <!-- HEADER -->
+
+            <div
+                class="header-part-rooms"
+                style="
+                    background-image: url({{ aboutUs_data.img_bg_header.url }});
+                "
+            >
+                <div class="container">
+                    <div class="header-pr-wrap row">
+                        <div class="background-overlay font-Megante"></div>
+                        <div class="col-lg-12 title-header-pr font-Megante" data-relative-input="true" id="scene">
+                        <h2 data-depth="0.2">
+                            {{ dining_data.title_header1 }}
+                        </h2>
+                        <h2 data-depth="0.3">
+                            {{ dining_data.title_header2 }}
+                        </h2>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE IMAGE ABOUT US -->
+
+            <div class="container-slide-image-room">
+                <div class="container title-slide-image-room">
+                    <div class="row slide-image-dining-wrap">
+                        <div
+                            class="
+                                col-lg-7
+                                m-auto
+                                text-center
+                                font-Megante
+                                slide-image-dining-content
+                            "
+                        >
+                            <h3>{{ aboutUs_data.big_title1 }}<br>{{ aboutUs_data.big_title2 }}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-image-room">
+                    <img
+                        src="{{ aboutUs_data.img_slide1.url }}"
+                    />
+                    <img
+                        src="{{ aboutUs_data.img_slide2.url }}"
+                    />
+                    <img
+                        src="{{ aboutUs_data.img_slide3.url }}"
+                    />
+                    <img
+                        src="{{ aboutUs_data.img_slide4.url }}"
+                    />
+                    <img
+                        src="{{ aboutUs_data.img_slide5.url }}"
+                    />
+                </div>
+                <div class="content-image-slide">
+                    <div
+                        class="
+                            row
+                            content-image-slide-wrap
+                            text-center
+                            font-Montserrat-L
+                        "
+                    >
+                        <div
+                            class="col-lg-9 m-auto content-image-slide-wrapper"
+                        >
+                            <p class="content-about-room-details">
+                                {{ aboutUs.title_rooms }}
+                            </p>
+                            <br />
+                            <a class="link-about-room-details" href="{% url 'rooms-page' %}"
+                                >Discover our rooms</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IMAGE PRALLAX -->
+
+            <div style="background-image: url({{ aboutUs_data.img_bg.url }})" class="container-image-prallax"></div>
+
+            <!-- MENU -->
+
+            <div class="container-menu-dining">
+                <div class="container container-menu-dining-wrap">
+                    <div class="row menu-dining-wrap menu-dining-1">
+                        <div class="col-lg-6 image-menu-dining-wrap">
+                            <img
+                                src="{{ aboutUs_data.img_intro1.url }}"
+                                alt=""
+                            />
+                        </div>
+                        <div class="col-lg-6 text-menu-dining-wrap">
+                            <div class="title-menu-dining-wrap">
+                                <h3>{{ aboutUs_data.tilte_intro1 }}</h3>
+                            </div>
+                            <div
+                                class="content-about-us-wrap font-Montserrat-L"
+                            >
+                                <p>
+                                    {{ aboutUs_data.content_intro1_1 }}
+                                </p>
+                                <p>
+                                    {{ aboutUs_data.content_intro1_2 }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="
+                            middle-text-menu-dining-wrap
+                            font-Megante
+                            text-center
+                        "
+                    >
+                        <h3>
+                            {{ aboutUs_data.big_title1 }} <br />
+                            {{ aboutUs_data.big_title2 }}
+                        </h3>
+                    </div>
+                    <div class="row menu-dining-wrap menu-dining-2">
+                        <div class="col-lg-6 text-menu-dining-wrap">
+                            <div class="title-menu-dining-wrap">
+                                <h3>{{ aboutUs_data.tilte_intro2 }}</h3>
+                            </div>
+                            <div
+                                class="
+                                    content-menu-dining-wrap
+                                    font-Montserrat-L
+                                "
+                            >
+                                <p>
+                                    {{ aboutUs_data.content_intro2_1 }}
+                                </p>
+                                <p>
+                                    {{ aboutUs_data.content_intro2_2 }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 image-menu-dining-wrap">
+                            <img
+                                src="{{ aboutUs_data.img_intro2.url }}"
+                                alt=""
+                            />
+                        </div>
+                    </div>
+                    <div class="row menu-dining-wrap menu-dining-1">
+                        <div class="col-lg-6 image-menu-dining-wrap">
+                            <img
+                                src="{{ aboutUs_data.img_intro3.url }}"
+                                alt=""
+                            />
+                        </div>
+                        <div class="col-lg-6 text-menu-dining-wrap">
+                            <div class="title-menu-dining-wrap">
+                                <h3>
+                                    {{ aboutUs_data.tilte_intro3 }}
+                                </h3>
+                            </div>
+                            <div
+                                class="content-about-us-wrap font-Montserrat-L"
+                            >
+                                <p>
+                                    {{ aboutUs_data.content_intro3_1 }}
+                                </p>
+                                <p>
+                                    <a class="about-us-rooms" href="{% url 'rooms-page' %}">
+                                        See our rooms
+                                    </a>
+                                </p>
+
+                                <p>
+                                    <a class="about-us-restaurant" href="{% url 'dining-page' %}">
+                                        See our restaurants
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DISH IMAGE -->
+
+            <div class="container-dish-image">
+                <div class="container container-dish-image-wrap">
+                    <div
+                        class="row dish-image-wrap"
+                        data-relative-input="true"
+                        id="scene2"
+                    >
+                        <div class="col-lg-6 m-auto dish-image" data-depth="0.2">
+                            <img
+                                width="786"
+                                height="1061"
+                                src="{{ aboutUs_data.img_intro4.url }}"
+                                alt=""
+                            />
+                        </div>
+                        <div class="col-lg-6 dish-image" data-depth="0.3">
+                            <img
+                                width="786"
+                                height="513"
+                                src="{{ aboutUs_data.img_intro5.url }}"
+                                alt=""
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block jsblock%}
+
+        <script src="{% static 'js/Flickity/flickity.pkgd.min.js' %}"></script>
+        <script src="{% static 'js/index.js' %}"></script>
+        <script src="{% static 'js/Rome/rome.js' %}"></script>
+        <script src="{% static 'js/room-part.js' %}"></script>
+        <script src="{% static 'js/rooms.js' %}"></script>
+        <script src="{% static 'js/about-us.js' %}"></script>
+        <script src="{% static 'js/common.js' %}"></script>
+
+{% endblock %}

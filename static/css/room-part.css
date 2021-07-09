@@ -1,0 +1,153 @@
+/* ====================== [ Header Style ] ====================== */
+
+.header-part-rooms {
+    min-height: 700px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+.header-pr-wrap {
+    align-items: center;
+    min-height: 700px;
+}
+
+.title-header-pr h2 {
+    text-align: center;
+    font-size: 50px;
+}
+
+/* ====================== [ End Header Style ] ====================== */
+
+/* ====================== [ Infor Detail Style ] ====================== */
+
+.infor-detail-room-wrap {
+    padding: 100px 0;
+}
+
+.text-infor-detail-room-wrap {
+    color: rgb(32, 32, 32);
+    padding-right: 50px;
+    border-right: 1px solid #9b9b9b;
+}
+
+.service-infor-detail-room-wrap {
+    padding-left: 50px;
+}
+
+.big-title-infor-detail-room h3 {
+    font-size: 45px;
+}
+
+.content-infor-detail-room {
+    font-size: 15px;
+}
+
+.content-service-infor-detail-room-wrap {
+    color: rgb(32, 32, 32);
+    font-size: 20px;
+}
+
+/* ====================== [ End Infor Detail Style ] ====================== */
+
+/* ====================== [ Slide image Style ] ====================== */
+
+.carousel-image-room img {
+  display: block;
+  height: 600px;
+  margin-right: 20px;
+}
+
+/* ====================== [ End Slide Image Style ] ====================== */
+
+/* ====================== [ Ready To Book Style ] ====================== */
+
+.container-ready-to-book {
+    padding: 80px 0;
+    color: rgb(32, 32, 32);
+}
+
+.content-ready-to-book-wrap {
+    align-items: center;
+    margin: auto 0;
+}
+
+.tilte-ready-to-book h3{
+    font-size: 40px;
+}
+
+.question-ready-to-book p{
+    font-size: 40px;
+    font-family: "Montserrat-Thin"
+}
+
+.book-now-ready-to-book-wrap {
+    padding: 0 30px;
+}
+
+.book-now-ready-to-book-container {
+    box-shadow: 0px 0px 40px 5px rgb(0 0 0 / 15%);
+}
+
+.title-book-now {
+    text-align: center;
+    align-items: center;
+    padding: 15px 0;
+    background-color: rgb(32, 32, 32);
+    color: #fff;
+}
+
+.title-book-now p {
+    margin: 0;
+}
+
+.form-check {
+    padding: 40px 50px;
+}
+
+.form-group {
+    width: 100%;
+    margin-top: 30px;
+    padding: 0;
+}
+
+.form-group:first-child {
+    margin: 0;
+}
+
+.form-group label {
+    margin: 0;
+}
+
+.form-group input {
+    font-size: 15px
+}
+
+.form-group select {
+    border-color:rgb(32, 32, 32);
+    color:rgb(32, 32, 32);
+}
+
+.form-group label, .form-control::placeholder, .form-control:focus, .form-control:active, .form-control {
+    color:rgb(32, 32, 32);
+}
+
+.form-control {
+    border-bottom: 1px solid rgb(32, 32, 32);
+}
+
+.input-number {
+    width: 49%;
+}
+
+.form-group .button {
+    color:rgb(32, 32, 32);
+    border-color: rgb(32, 32, 32);
+    transition: .3s;
+}
+
+.form-group .button:hover {
+    color: #fff;
+    background-color: rgb(32, 32, 32);
+}
+
+/* ====================== [ End Ready To Book Style ] ====================== */

@@ -1,0 +1,178 @@
+{% extends 'pages/base/base.html' %}
+{% load static %}
+
+{% block cssblock %}
+
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/rooms.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/Rome/rome.css' %}" />
+
+{% endblock %}
+
+{% block content %}
+
+        <div id="content-container">
+            <!-- HEADER -->
+
+            <div class="header-rooms">
+                <div class="parallax-slider">
+                    <div class="slider-wrapper">
+                        <div class="slide slide1 slide-active">
+                            <div class="overlay-background overlay-slide"></div>
+                            <div class="content">
+                                <div class="container font-Megante">
+                                    <div class="col-md-6 caption">
+                                        <h1>{{ rooms_data.title_header1 }}</h1>
+                                        <p>{{ rooms_data.small_title_header1 }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide slide2">
+                            <div class="overlay-background overlay-slide"></div>
+                            <div class="content">
+                                <div class="container">
+                                    <div class="col-md-6 caption">
+                                        <h1>{{ rooms_data.title_header2 }}</h1>
+                                        <p>{{ rooms_data.small_title_header2 }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slide slide3">
+                            <div class="overlay-background overlay-slide"></div>
+                            <div class="content">
+                                <div class="container">
+                                    <div class="col-md-6 caption">
+                                        <h1>{{ rooms_data.title_header3 }}</h1>
+                                        <p>{{ rooms_data.small_title_header3 }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide-indicator">
+                        <ol>
+                            <li class="active"></li>
+                            <li></li>
+                            <li></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 TYPES OF ROOMS -->
+
+            <div class="container-types">
+                <div class="container content-types">
+                    <div
+                        class="row content-types-wrap font-Megante text-center"
+                    >
+                        <div class="col-lg-3 type-room-items">
+                            <p><a href="">Superior Room</a></p>
+                        </div>
+                        <div class="col-lg-3 type-room-items">
+                            <p><a href="">Deluxe Room</a></p>
+                        </div>
+                        <div class="col-lg-3 type-room-items">
+                            <p><a href="">Signature Room</a></p>
+                        </div>
+                        <div class="col-lg-3 type-room-items">
+                            <p><a href="">Luxury Suite Room</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DETAIL ROOMS -->
+
+            <div class="container-detail">
+                <div class="container">
+                    <div class="row content-details">
+                        <div class="col-lg-6 content-details-row1">
+                            {% for rooms in rooms_list %}
+                                {% if not rooms.pk|divisibleby:2 %}
+                                    <div class="row-room">
+                                        <div class="row content-row-room-r">
+                                            <div class="col-lg-12 detail-superior">
+                                                <div class="title-detail-room font-Megante" >
+                                                    <h5>
+                                                        <a href="{% url 'rooms-detail' rooms.pk %}">{{ rooms.room_type }} Room - {{ rooms.capacity_adults|add:rooms.capacity_children }} people / {{rooms.area}}m²</a>
+                                                    </h5>
+                                                </div>
+                                                <div class="image-detail-room">
+                                                    <img width="600" height="800" src="{{ rooms.img_vertical.url }}" alt="" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 text-detail-room font-Montserrat-L ">
+                                                <p>
+                                                    {{ rooms.description }}
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-7 button-detail-room font-Montserrat-L">
+                                                <input type="button" value="View room" onclick="window.location.href='{% url 'rooms-detail' rooms.pk %}'" />
+                                            </div>
+                                            <div class=" col-lg-5 price-detail-room font-Megante ">
+                                                <p>From {{ rooms.price }}$</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="col-lg-6 content-details-row2">
+                            <div class="row content-row-room-r intro-detail-room font-Megante">
+                                <p>Our Room</p>
+                                <p>
+                                    Our spacious accommodations are excellent
+                                    for a trip with friends, family or as a
+                                    couple. Each accommodation is fully equipped
+                                    and furnished to create a pleasant and
+                                    relaxing atmosphere.
+                                </p>
+                            </div>
+                            {% for rooms in rooms_list %}
+                                {% if rooms.pk|divisibleby:2 %}
+                                    <div class="row-room">
+                                        <div class="row content-row-room-r">
+                                            <div class="col-lg-12 detail-superior">
+                                                <div class="title-detail-room font-Megante" >
+                                                    <h5>
+                                                        <a href="{% url 'rooms-detail' rooms.pk %}">{{ rooms.room_type }} Room - {{ rooms.capacity_adults|add:rooms.capacity_children }} people / {{rooms.area}}m²</a>
+                                                    </h5>
+                                                </div>
+                                                <div class="image-detail-room">
+                                                    <img width="600" height="800" src="{{ rooms.img_vertical.url }}" alt="" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 text-detail-room font-Montserrat-L ">
+                                                <p>
+                                                    {{ rooms.description }}
+                                                </p>
+                                            </div>
+                                            <div class="col-lg-7 button-detail-room font-Montserrat-L">
+                                                <input type="button" value="View room" onclick="window.location.href='{% url 'rooms-detail' rooms.pk %}'" />
+                                            </div>
+                                            <div class=" col-lg-5 price-detail-room font-Megante ">
+                                                <p>From {{ rooms.price }}$</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block jsblock %}
+
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/Rome/rome.js' %}"></script>
+    <script src="{% static 'js/rooms.js' %}"></script>
+
+{% endblock %}

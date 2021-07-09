@@ -1,0 +1,150 @@
+{% extends 'pages/base/base.html' %}
+{% load static %}
+
+{% block cssblock %}
+
+        <link rel="stylesheet" href="{% static 'css/Flickity/flickity.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/rooms.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/room-part.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/contact.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/Rome/rome.css' %}" />
+
+{% endblock %}
+
+{% block content %}
+
+        <div id="content-container">
+            <!-- HEADER -->
+
+            <div
+                class="header-part-rooms"
+                style="
+                    background-image: url({{ contact_data.img_bg_header.url }});
+                "
+            >
+                <div class="container">
+                    <div class="header-pr-wrap row">
+                        <div class="background-overlay font-Megante"></div>
+                        <div class="col-lg-12 title-header-pr font-Megante" data-relative-input="true" id="scene">
+                            <h2 data-depth="0.2">{{ contact_data.title_header }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INFOR ADDRESS -->
+
+            <div class="container-infor-address">
+                <div class="container container-infor-address-wrap">
+                    <div class="row infor-address-wrap">
+                        <div class="col-lg-4 infor-address-items">
+                            <div class="title-infor-address-items">
+                                <h5>Our Address</h5>
+                            </div>
+                            <div class="content-infor-address-items">
+                                <span>
+                                    {{ contact_data.content_our_address }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 infor-address-items">
+                            <div class="title-infor-address-items">
+                                <h5>By Car</h5>
+                            </div>
+                            <div>
+                                <span class="content-infor-address-items">
+                                    {{ contact_data.content_by_car }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 infor-address-items">
+                            <div class="title-infor-address-items">
+                                <h5>By Train</h5>
+                            </div>
+                            <div>
+                                <span class="content-infor-address-items">
+                                    {{ contact_data.content_by_train }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 triangle-wrap">
+                            <div class="triangle">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 10" preserveAspectRatio="none">
+                                    <path class="elementor-shape-fill" d="M350,10L340,0h20L350,10z"></path>
+                                    </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORM QUESTION -->
+
+            <div class="container-form-question">
+                <div class="container container-form-question-wrap">
+                    <div class="row form-question-wrap">
+                        <div class="col-lg-9 m-auto content-form-question">
+                            <form action="" class="form-question font-Montserrat-L">
+                                <p class="input">
+                                    <label class="label-form-question" for="">
+                                        Name (*)
+                                    </label>
+                                    <input class="input-form-question" type="text">
+                                </p>
+                                <p>
+                                    <label class="label-form-question" for="">
+                                        Email (*)
+                                    </label>
+                                    <input class="input-form-question" type="email">
+                                </p>
+                                <p>
+                                    <label class="label-form-question" for="">
+                                        Phone
+                                    </label>
+                                    <input class="input-form-question" type="number">
+                                </p>
+                                <p>
+                                    <label class="label-form-question" for="">
+                                        Name (*)
+                                    </label>
+                                    <textarea class="input-form-question" name="" id="" cols="30" rows="10"></textarea>
+                                </p>
+                                <p>
+                                    <input class="button-form-question" type="button" name="" id="" value="Send">
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAP -->
+
+            <div class="container-map">
+                <div class="container container-map-wrap">
+                    <div class="wrap map-wrap text-center">
+                        <div class="title-map-wrap font-Megante">
+                            <p>Our Address</p>
+                        </div>
+                        <div class="google-map-wrap">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d1922.4780444108997!2d103.84596009052785!3d22.336275718018427!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1624552792591!5m2!1sen!2s" width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block jsblock %}
+
+        <script src="{% static 'js/index.js' %}"></script>
+        <script src="{% static 'js/Rome/rome.js' %}"></script>
+        <script src="{% static 'js/room-part.js' %}"></script>
+        <script src="{% static 'js/rooms.js' %}"></script>
+        <script src="{% static 'js/contact.js' %}"></script>
+        <script src="{% static 'js/common.js' %}"></script>
+
+{% endblock %}

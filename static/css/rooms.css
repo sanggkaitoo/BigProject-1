@@ -1,0 +1,222 @@
+input {
+    cursor: none !important;
+}
+
+/* ====================== [ Slide Style ] ====================== */
+
+.parallax-slider {
+    position: relative;
+}
+
+.slider-wrapper {
+    white-space: nowrap;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    position: relative;
+}
+
+.slide {
+    background-size: cover !important;
+    background-position: center !important;
+    display: inline-block;
+    width: 100%;
+    height: 700px;
+    flex-shrink: 0;
+    transition: 0.9s ease-in-out transform;
+    backface-visibility: hidden;
+}
+
+.slide-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+.slide-indicator ol {
+    display: inline-block;
+}
+
+.slide-indicator li {
+    display: inline-block;
+    height: 2px;
+    width: 30px;
+    background: #9b9b9b;
+    transition: 0.2s ease-in-out;
+    margin: 0 5px;
+}
+
+.slide-indicator li:hover {
+    background: #fff;
+}
+
+.slide-indicator li.active {
+    background: #fff;
+}
+
+.slide::before {
+    content: "";
+    display: inline-block;
+    height: 50%;
+}
+
+.content {
+    display: inline-block;
+    width: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+    white-space: normal;
+    color: #fff;
+    transform: translate(-5px);
+}
+
+.caption {
+    padding: 20px;
+    transition: 0.4s;
+    transition-delay: 0.8s;
+    opacity: 0;
+    transform: translatey(200%);
+}
+
+.caption h1 {
+    font-size: 60px;
+    font-weight: 700;
+}
+
+.overlay-slide {
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.slide-active .overlay-background {
+    opacity: .4;
+}
+
+.slide-active .caption {
+    transform: translatey(0);
+    opacity: 1;
+}
+
+.header {
+    height: 1000px;
+    position: relative;
+}
+
+.slide1 {
+    background: url("../../media/Image/roompage/headerImage/One-Bedroom-Alpine-Suite-Lake-View.jpeg")
+}
+
+.slide2 {
+    background: url("../../media/Image/roompage/headerImage/room-standard-01.jpeg")
+}
+
+.slide3 {
+    background: url("../../media/Image/roompage/headerImage/St-Moritz-Guest-Room.jpeg")
+}
+
+/* ====================== [ End Slide Style ] ====================== */
+
+/* ====================== [ 4 Types Of Room Style ] ====================== */
+
+.container-types {
+    background-color: #F9F9F9;
+    padding: 25px 80px;
+}
+
+.content-types-wrap {
+    height: 40px;
+    align-items: center;
+}
+
+.type-room-items {
+    padding: 0;
+}
+
+.type-room-items p {
+    margin: 0;
+    line-height: 40px;
+    border-right: 1px solid #9b9b9b;
+}
+
+.type-room-items:last-child p {
+    border-right: none;
+}
+
+.type-room-items a {
+    color: rgb(32, 32, 32);
+}
+
+
+/* ====================== [ End 4 Types Of Room Style ] ====================== */
+
+/* ====================== [ Detail Room Style ] ====================== */
+
+.intro-detail-room p:last-child {
+    font-size: 25px;
+}
+
+.container-detail, .title-detail-room a{
+    color: rgb(32, 32, 32);
+}
+
+.detail-superior, .button-detail-room, .price-detail-room {
+    padding: 0;
+}
+
+.content-details-row1 {
+    margin-top: 100px;
+}
+
+.content-details-row2 {
+    margin-top: 70px;
+}
+
+.row-room {
+    padding: 30px 0;
+}
+
+.image-detail-room img{
+    width: 100%;
+}
+
+.content-row-room-l {
+    padding-right: 50px;
+}
+
+.content-row-room-r {
+    padding-left: 50px;
+}
+
+.title-detail-room {
+    padding: 15px 0;
+}
+
+.text-detail-room {
+    padding: 20px 0;
+}
+
+.button-detail-room input {
+    height: 40px;
+    width: 120px;
+    border: none;
+    background-color: Transparent;
+    border-top: 1px solid #9b9b9b;
+    border-bottom: 1px solid #9b9b9b;
+    transition: .3s;
+}
+
+.button-detail-room:hover input {
+    background-color: rgb(32, 32, 32);
+    color: #fff;
+}
+
+.price-detail-room p {
+    font-size: 30px;
+    margin: 0;
+}
+
+/* ====================== [ End Detail Room Style ] ====================== */
