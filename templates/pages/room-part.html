@@ -1,6 +1,7 @@
 {% extends 'pages/base/base.html' %}
 {% load static %}
 {% load mathfilters %}
+{% load my_filters %}
 
 {% block cssblock %}
 
@@ -132,23 +133,28 @@
                                 <p>BOOK NOW</p>
                             </div>
                             <div class="form-check-wrap">
-                                <form class="form-check font-Montserrat-L" action="search-availability">
+                                <form class="form-check font-Montserrat-L" action="{% url 'search-result' %}" method="POST">
+                                    {% csrf_token %}
                                     <p class="form-group">
                                         <label for="input_from">Check-in</label>
                                         <input
+                                            name="check_in_date"
                                             type="text"
                                             class="form-control"
                                             id="input_from"
                                             placeholder="Check-in Date"
+                                            required
                                         />
                                     </p>
                                     <p class="form-group">
                                         <label for="input_to">Check-out</label>
                                         <input
+                                            name="check_out_date"
                                             type="text"
                                             class="form-control"
                                             id="input_to"
                                             placeholder="Check-out Date"
+                                            required
                                         />
                                     </p>
                                     <p class="form-group input-number">
@@ -157,7 +163,7 @@
                                         >
                                         <br />
                                         <select
-                                            name="select-adults"
+                                            name="adults_amount"
                                             id="select-adults"
                                             class="select-number"
                                         >
@@ -194,7 +200,7 @@
                                         >
                                         <br />
                                         <select
-                                            name="select-adults"
+                                            name="children_amount"
                                             id="select-childrens"
                                             class="select-number"
                                         >
@@ -214,6 +220,22 @@
                                             <option value="8">8</option>
                                             <option value="9">9</option>
                                             <option value="10">10</option>
+                                        </select>
+                                    </p>
+                                    <p class="form-group">
+                                        <label for="select_rooms"
+                                            >Room</label
+                                        >
+                                        <br />
+                                        <select
+                                            name="rooms_amount"
+                                            id="select_rooms"
+                                            class="select-number"
+                                            required
+                                        >
+                                            {% for i in total_room|length|times %}
+                                                <option value="{{ i|add:1 }}" {% if i|add:1 == rooms_amount %}selected="selected"{% endif %}>{{ i|add:1 }}</option>
+                                            {% endfor %}
                                         </select>
                                     </p>
                                     <p class="form-group">

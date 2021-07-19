@@ -47,7 +47,7 @@
                 </div>
                 <div class="footer-items">
                     <div><a href="{% url 'home-page' %}">Home</a></div>
-                    <div><a href="{% url 'romes-page' %}">Rooms</a></div>
+                    <div><a href="{% url 'rooms-page' %}">Rooms</a></div>
                     <div><a href="{% url 'dining-page' %}">Dining</a></div>
                     <div><a href="{% url 'aboutUs-page' %}">About</a></div>
                     <div><a href="{% url 'contact-page' %}">Contact</a></div>
@@ -77,7 +77,8 @@
                     <p>Contact Us</p>
                 </div>
                 <div class="footer-items">
-                    <p>{{ footer_data.phone }}</p>
+                    <p><a href="tel:{{ footer_data.phone }}">{{ footer_data.phone }}</a></p>
+                    <p><a href="mailto:{{ footer_data.phone }}">{{ footer_data.email }}</a></p>
                 </div>
             </div>
         </div>

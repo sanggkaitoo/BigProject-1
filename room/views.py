@@ -18,24 +18,16 @@ class RoomsPage(ListView):
 class RoomsDetail(DetailView):
     def get(self, request, pk):
         data = room.RoomType.objects.get(pk=pk)
-        return render(request, 'pages/room-part.html', {'data': data})
-
-
-# class SearchResults(View):
-#     def get(self, request):
-#         home_data = base.homePage.objects.latest('id')
-#         return render(request, 'pages/search-rooms.html', {'home_data': home_data})
-#
-#
-# class BookingConfirm(View):
-#     def get(self, request):
-#         home_data = base.homePage.objects.latest('id')
-#         return render(request, 'pages/booking-confirm.html', {'home_data': home_data})
+        total_room = room.Room.objects.all()
+        return render(request, 'pages/room-part.html', {'data': data,
+                                                        'total_room': total_room})
 
 
 def searchRoom(request):
     if request.method == "POST":
         check_in_date = datetime.strptime(request.POST.get('check_in_date'), "%d-%m-%Y").date()
+        print("==============")
+        print(check_in_date)
         check_out_date = datetime.strptime(request.POST.get('check_out_date'), "%d-%m-%Y").date()
         night_amount = (check_out_date - check_in_date).days
         adults_amount = int(request.POST.get('adults_amount'))

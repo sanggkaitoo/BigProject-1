@@ -221,4 +221,8 @@
     margin: 0;
 }
 
+.hotel-tel a, .hotel-mail a {
+    color: rgb(32, 32, 32);
+}
+
 /* ====================== [ End Right Style ] ====================== */

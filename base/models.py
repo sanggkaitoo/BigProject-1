@@ -108,3 +108,4 @@ class contactPage(models.Model):
     instagram = models.CharField(max_length=255, default='')
     address = models.TextField(default='04 Hoang Van Thu Street, Sa Pa, Lao Cai, Viet Nam')
     phone = models.CharField(max_length=20, default='+(84) 85 266 2000')
+    email = models.EmailField(max_length=20, default='sanggkaitoo@gmail.com')
