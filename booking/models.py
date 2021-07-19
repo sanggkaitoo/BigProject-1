@@ -9,7 +9,7 @@ from django.utils import timezone
 class Customer(models.Model):
     firstName = models.CharField(max_length=50, null= True)
     lastName = models.CharField(max_length=50)
-    contactNum = models.IntegerField
+    contactNum = models.CharField(max_length=10, default='0123456789')
     gender = (
         ('M', 'Male'),
         ('F', 'Female'),
@@ -33,21 +33,30 @@ class Sale(models.Model):
     status = models.BooleanField(default=True)
 
 
+class Payment(models.Model):
+    saleID = models.ForeignKey(Sale, on_delete=models.CASCADE, null= True, blank=True)
+    amount = models.IntegerField()
+    paymentTypeChoices = (
+        ('Momo', 'Momo'),
+        ('Visa/Debit/Mastercard', 'Visa/Debit/Mastercard'),
+        ('Paypal', 'Paypal')
+    )
+    paymentType = models.CharField(max_length=50, choices=paymentTypeChoices)
+    customerID = models.ForeignKey(Customer, on_delete=models.CASCADE, default='')
+    paymentDate = models.DateTimeField(auto_now=True)
+    checkin = models.DateField(auto_now=False, editable=True, default='')
+    checkout = models.DateField(auto_now=False, editable=True, default='')
+    note = models.TextField(default='')
+    status = models.BooleanField(default=False)
+
+
 class Booking(models.Model):
+    paymentID = models.ForeignKey(Payment, on_delete=models.CASCADE, default='')
     roomID = models.ForeignKey(Room, on_delete=models.CASCADE)
-    customerID = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    saleID = models.ForeignKey(Sale, on_delete=models.CASCADE, null=True, blank=True)
     bookingDate = models.DateField(auto_now_add=True)
     checkin = models.DateField(auto_now=False, editable=True, default='')
     checkout = models.DateField(auto_now=False, editable=True, default='')
-
-
-class Payment(models.Model):
-    bookingID = models.ForeignKey(Booking, on_delete=models.CASCADE)
-    saleID = models.ForeignKey(Sale, on_delete=models.CASCADE)
-    amount = models.IntegerField
-    paymentType = models.CharField(max_length=50)
-    paymentDate = models.DateTimeField(auto_now=True)
-    status = models.BooleanField(default=False)
+    children = models.IntegerField(default=1)
+    adults = models.IntegerField(default=0)
 
 

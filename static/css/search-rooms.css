@@ -63,6 +63,10 @@
     background-size: cover;
 }
 
+.other-choice {
+    padding-bottom: 20px;
+}
+
 .name-rooms {
     color: rgb(32, 32, 32)
 }
@@ -100,14 +104,22 @@
 }
 
 .remove-wrap p {
-    width: 80%;
+    width: 75%;
     margin: 0;
     float: left;
 }
 
-.remove-wrap a {
+.remove-button {
     color: rgb(32, 32, 32);
+    background: transparent;
+    border: none;
+    padding: 0 10px;
     font-family: Montserrat-SemiBold;
+    cursor: none !important;
+}
+
+.remove-wrap {
+    display: none;
 }
 
 .button {
@@ -120,6 +132,17 @@
     cursor: none !important;
     width: auto;
     margin: 40px 0;
+}
+
+.other-book .button-reservation{
+    float: right;
+    margin-top: 0;
+}
+
+.select-room-add {
+    width: 20%;
+    padding: 10px 5px;
+    border-radius: 0px;
 }
 
 .button-recommend input{
@@ -139,6 +162,16 @@
 #room-number {
     border: 1px solid rgb(32, 32, 32);
     width: 12%;
+}
+
+.confirm-button {
+    background: rgb(32, 32, 32);
+    color: #fff;
+}
+
+.confirm-button:hover {
+    background: #fff;
+    color: rgb(32, 32, 32)
 }
 
 /* ====================== [ End Left Style ] ====================== */
@@ -164,7 +197,8 @@
 }
 
 .text-required {
-    padding: 20px 0;
+    padding: 10px 0;
+    margin: 0;
 }
 
 .book-now-ready-to-book-wrap {

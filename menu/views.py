@@ -5,9 +5,6 @@ from base import models as base
 from menu import models as menu
 
 
-common_data = base.commonPage.objects.latest('id')
-
-
 class DiningPage(View):
     def get(self, request):
         rooms_list = room.RoomType.objects.all()
@@ -15,8 +12,7 @@ class DiningPage(View):
         aboutUs_data = base.aboutUsPage.objects.latest('id')
         dish_menu = menu.dish.objects.all()
         menu_data = menu.menu.objects.all()
-        return render(request, 'pages/dining.html', {'common_data': common_data,
-                                                     'rooms_list': rooms_list,
+        return render(request, 'pages/dining.html', {'rooms_list': rooms_list,
                                                      'dining_data': dining_data,
                                                      'dish_menu': dish_menu,
                                                      'aboutUs_data': aboutUs_data,

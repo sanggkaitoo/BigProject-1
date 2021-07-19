@@ -68,15 +68,26 @@ $(function () {
 
 $(function () {
 
+		var today = new Date();
+
+		var month = today.getMonth()+1;
+		var day = today.getDate();
+
+		var output = (day<10 ? '0' : '') + day + '-' +
+			(month<10 ? '0' : '') + month + '-' +
+			today.getFullYear();
+
 	rome(input_from, {
 		dateValidator: rome.val.beforeEq(input_to),
 		time: false,
+		min: output,
 		inputFormat: "DD-MM-YYYY"
 	});
 
 	rome(input_to, {
 		dateValidator: rome.val.afterEq(input_from),
 		time: false,
+		min: output,
 		inputFormat: "DD-MM-YYYY"
 	});
 

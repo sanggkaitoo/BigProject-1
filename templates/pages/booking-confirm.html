@@ -1,8 +1,11 @@
 {% extends 'pages/base/base.html' %}
 {% load static %}
+{% load mathfilters %}
+{% load my_filters %}
 
 {% block cssblock %}
 
+    <link rel="stylesheet" href="{% static 'css/Rome/rome.css' %}">
     <link rel="stylesheet" href="{% static 'css/index.css' %}" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
     <link rel="stylesheet" href="{% static 'css/room-part.css' %}" />
@@ -18,247 +21,249 @@
             <div class="title-booking-confirm">
                 <h3 class="font-Megante text-center">Booking Confirmation</h3>
             </div>
-            <div class="row content-wrap">
-                <div class="col-lg-8 infor-rooms-search">
-                    <div class="number-rooms-found">
-                        <p class="font-Megante title">
-                            Booking Details
-                        </p>
-                        <p>Check-in: 03/06/2021 <span class="font-Montserrat-B"></span>, from 11:00 am</p>
-                        <p>Check-out: 07/06/2021 <span class="font-Montserrat-B"></span>, until 11:00 am</p>
-                    </div>
-                    <div class="number-people">
-                        <p class="index-accommnodation font-Megante">Accommodation #1</p>
-                        <p>Accommodation Type: Signature Room</p>
-                        <p class="form-group input-number">
-                            <label for="select-adults">Adults</label>
-                            <br />
-                            <select
-                                name="select-adults"
-                                id="select-adults"
-                                class="select-number"
-                            >
-                                <option
-                                    value="1"
-                                    selected="selected"
-                                >
-                                    1
-                                </option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </p>
-                        <p class="form-group input-number">
-                            <label for="select-adults">Childrens</label>
-                            <br />
-                            <select
-                                name="select-adults"
-                                id="select-childrens"
-                                class="select-number"
-                            >
-                                <option
-                                    value="0"
-                                    selected="selected">
-                                    0
-                                </option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </p>
-                        <p class="guest-name">
-                            <label for="">Full Guest Name</label>
-                            <input class="guest-name-input" type="text">
-                        </p>
-                    </div>
-                    <div class="coupon-code">
-                        <label for="">Coupon Code:</label>
-                        <input class="coupon-input" type="text" required>
-                        <br>
-                        <input class="coupon-check" type="button" value="Apply">
-                    </div>
-                    <div class="price-breakdown">
-                        <p class="font-Megante title">
-                            Price Breakdown
-                        </p>
-                        <div class="price-detail-wrap">
-                            <div class="price-detail-container">
-                                <div class="price-detail row">
+            <form action="{% url 'reservation-received' %}" method="POST">
+                {% csrf_token %}
+                <div class="row content-wrap">
+                    <div class="col-lg-8 infor-rooms-search">
+                        <div class="number-rooms-found">
+                            <p class="font-Megante title">
+                                Booking Details
+                            </p>
+                            <p>Check-in: <span class="font-Montserrat-B">{{ check_in_date }}</span>, from 11:00 am</p>
+                            <p>Check-out: <span class="font-Montserrat-B">{{ check_out_date }}</span>, until 11:00 am</p>
+                            <input type="hidden" name="check_in_date" value="{{ check_in_date|date:'d-m-Y' }}">
+                            <input type="hidden" name="check_out_date" value="{{ check_out_date|date:'d-m-Y' }}">
+                        </div>
+                        {% for item in list_room_reservation %}
+                            <div class="number-people">
+                                <p class="index-accommnodation font-Megante">Accommodation #{{ forloop.counter }}</p>
+                                <p>Accommodation Type: {{ item.room_type_ID }}</p>
+                                <p>Room number: {{ item.room_number }}</p>
+                                <input type="hidden" value="{{ item.room_number }}" name="{{ forloop.counter }}">
+                                <p class="form-group input-number">
+                                    <label for="select-adults">Adults</label>
+                                    <br />
+                                    <select
+                                        name="select-adults-{{ item.room_number }}"
+                                        class="select-number"
+                                        required
+                                    >
+                                        {% for i in item.room_type_ID.capacity_adults|times %}
+                                            <option value="{{ i|add:1 }}">{{ i|add:1 }}</option>
+                                        {% endfor%}
+                                    </select>
+                                </p>
+                                <p class="form-group input-number">
+                                    <label for="select-adults">Children</label>
+                                    <br />
+                                    <select
+                                        name="select-children-{{ item.room_number }}"
+                                        class="select-number"
+                                        required
+                                    >
+                                        {% for i in item.room_type_ID.capacity_children|add:1|times %}
+                                            <option value="{{ i }}">{{ i }}</option>
+                                        {% endfor%}
+                                    </select>
+                                </p>
+                            </div>
+                        {% endfor%}
+                        <input type="hidden" name="total_room" value="{{ list_room_reservation|length }}">
+                        <div class="coupon-code">
+                            <label for="">Coupon Code:</label>
+                            <input class="coupon-input" type="text">
+                            <br>
+                            <input class="coupon-check" type="button" value="Apply">
+                        </div>
+                        <div class="price-breakdown">
+                            <p class="font-Megante title">
+                                Price Breakdown
+                            </p>
+                            <div class="price-detail-wrap">
+                                <div class="price-detail-container">
+                                    {% for item in list_room_reservation %}
+                                        <div class="price-detail row">
+                                            <div class="col-lg-9">
+                                                <p>#{{ forloop.counter }} {{ item.room_type_ID }}</p>
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <p>${{ item.room_type_ID.price|mul:night_amount }}</p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="price-total row">
                                     <div class="col-lg-9">
-                                        <p>#1 Signature Room</p>
+                                        <p>Total</p>
                                     </div>
                                     <div class="col-lg-3">
-                                        <p>$399</p>
+                                        <p>${{ total }}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="price-total row">
-                                <div class="col-lg-9">
-                                    <p>Total</p>
-                                </div>
-                                <div class="col-lg-3">
-                                    <p>$399</p>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                    <div class="guest-infor">
-                        <p class="font-Megante title">
-                            Your Information
-                        </p>
-                        <p class="required-text">Required fields are followed by *</p>
-                        <div class="input-infor-guest">
-                            <form action="">
-                                <p class="input-guest-infor">
-                                    <label for="">First Name</label>
-                                    <input type="text">
-                                </p>
-                                <p class="input-guest-infor">
-                                    <label for="">Last Name</label>
-                                    <input type="text">
-                                </p>
-                                <p class="input-guest-infor">
-                                    <label for="">Phone</label>
-                                    <input type="text">
-                                </p>
-                                <p class="input-guest-infor">
-                                    <label for="">Note</label>
-                                    <input type="text">
-                                </p>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="payment-method">
-                        <p class="font-Megante title">
-                            Payment Method
-                        </p>
-                        <div class="select-method">
-                            <input type="radio" id="visa"> <label class="font-Montserrat-B" for="visa">Visa / Debit / Mastercard</label> <br>
-                            <input type="radio" id="visa1"> <label class="font-Montserrat-B" for="visa1">Momo</label> <br>
-                            <input type="radio" id="visa2"> <label class="font-Montserrat-B" for="visa2">Thẻ tín dụng</label> <br>
-                        </div>
-                    </div>
-                    <div class="send-button-wrap row">
-                        <div class="price-total col-lg-10">
-                            <p class="font-Montserrat-L total-wrap">Total Price: <span class="font-Montserrat-B">$399</span></p>
-                        </div>
-                        <div class="col-lg-2 send-button">
-                            <input type="button" value="Send">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 book-now-ready-to-book-wrap">
-                    <div class="slidebar-wrap">
-                        <div class="book-now-ready-to-book-container">
-                            <div class="title-book-now font-Megante">
-                                <p>Book Your Stay</p>
-                            </div>
-                            <p class="text-required">Required fields are followed by *</p>
-                            <div class="form-check-wrap">
-                                <form class="form-check font-Montserrat-L" action="search-availability">
-                                    <p class="form-group">
-                                        <label for="input_from">Check-in *</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id="input_from"
-                                            placeholder="Check-in Date"
-                                        />
+                        <div class="guest-infor">
+                            <p class="font-Megante title">
+                                Your Information
+                            </p>
+                            <p class="required-text">Required fields are followed by *</p>
+                            <div class="input-infor-guest">
+                                <form action="">
+                                    <p class="input-guest-infor">
+                                        <label for="">First Name *</label>
+                                        <input type="text" name="customer_fname" required>
                                     </p>
-                                    <p class="form-group">
-                                        <label for="input_to">Check-out *</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id="input_to"
-                                            placeholder="Check-out Date"
-                                        />
+                                    <p class="input-guest-infor">
+                                        <label for="">Last Name *</label>
+                                        <input type="text" name="customer_lname" required>
                                     </p>
-                                    <p class="form-group input-number">
-                                        <label for="select-adults"
-                                            >Adults</label
-                                        >
-                                        <br />
-                                        <select
-                                            name="select-adults"
-                                            id="select-adults"
-                                            class="select-number"
-                                        >
-                                            <option
-                                                value="1"
-                                                selected="selected"
-                                            >
-                                                1
-                                            </option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                            <option value="13">13</option>
-                                            <option value="14">14</option>
-                                            <option value="15">15</option>
-                                            <option value="16">16</option>
-                                            <option value="17">17</option>
-                                            <option value="18">18</option>
-                                            <option value="19">19</option>
-                                            <option value="20">20</option>
+                                    <p class="input-guest-infor">
+                                        <label for="">Gender *</label>
+                                        <br>
+                                        <select name="customer_gender" id="" class="select-gender" required>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
                                         </select>
                                     </p>
-                                    <p class="form-group input-number">
-                                        <label for="select-adults"
-                                            >Childrens</label
-                                        >
-                                        <br />
-                                        <select
-                                            name="select-adults"
-                                            id="select-childrens"
-                                            class="select-number"
-                                        >
-                                            <option
-                                                value="0"
-                                                selected="selected"
-                                            >
-                                                0
-                                            </option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                        </select>
+                                    <p class="input-guest-infor">
+                                        <label for="">Mail *</label>
+                                        <input type="email" name="customer_mail" required>
                                     </p>
-                                    <p class="form-group">
-                                        <input
-                                            type="submit"
-                                            class="button"
-                                            value="Check Avaiability"
-                                        />
+                                    <p class="input-guest-infor">
+                                        <label for="">Phone *</label>
+                                        <input type="text" name="customer_phone" required>
+                                    </p>
+                                    <p class="input-guest-infor">
+                                        <label for="">ID number *</label>
+                                        <input type="text" name="customer_id_number" required>
+                                    </p>
+                                    <p class="input-guest-infor">
+                                        <label for="">Note</label>
+                                        <input type="text" name="customer_notes">
                                     </p>
                                 </form>
                             </div>
                         </div>
-                        <div class="infor-hotel">
-                            <p class="hotel-name font-Megante">An Khang Hotel</p>
-                            <p class="hotel-address">04 Hoang Van Thu, Sa Pa, Lao Cai</p>
-                            <p class="hotel-tel">Tel: +(84) 85 266 2000</p>
-                            <p class="hotel-mail">Mail: ankhanghotel@gmail.com</p>
+                        <div class="payment-method">
+                            <p class="font-Megante title">
+                                Payment Method
+                            </p>
+                            <div class="select-method">
+                                <input type="radio" name="payment_method" value="Visa/Debit/Mastercard" id="visa" required> <label class="font-Montserrat-B" for="visa">Visa / Debit / Mastercard</label> <br>
+                                <input type="radio" name="payment_method" value="Momo" id="visa1" required> <label class="font-Montserrat-B" for="visa1">Momo</label> <br>
+                                <input type="radio" name="payment_method" value="Paypal" id="visa2" required> <label class="font-Montserrat-B" for="visa2">Paypal</label> <br>
+                            </div>
+                        </div>
+                        <div class="send-button-wrap row">
+                            <div class="price-total col-lg-10">
+                                <p class="font-Montserrat-L total-wrap">Total Price: <span class="font-Montserrat-B">${{ total }}</span></p>
+                                <input type="hidden" value="{{ total }}" name="total_price">
+                            </div>
+                            <div class="col-lg-2 send-button">
+                                <input type="submit" class="button" value="Send">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 book-now-ready-to-book-wrap">
+                        <div class="slidebar-wrap">
+                            <div class="book-now-ready-to-book-container">
+                                <div class="title-book-now font-Megante">
+                                    <p>Book Your Stay</p>
+                                </div>
+                                <p class="text-required">Required fields are followed by *</p>
+                                <div class="form-check-wrap">
+                                    <form method="POST" action="{% url 'search-result' %}" class="form-check font-Montserrat-L">
+                                        {% csrf_token %}
+                                        <p class="form-group">
+                                            <label for="input_from">Check-in *</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="input_from"
+                                                placeholder="Check-in Date"
+                                                name="check_in_date"
+                                                value="{{ check_in_date|date:'d-m-Y' }}"
+                                                required
+                                            />
+                                        </p>
+                                        <p class="form-group">
+                                            <label for="input_to">Check-out *</label>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="input_to"
+                                                placeholder="Check-out Date"
+                                                name="check_out_date"
+                                                value="{{ check_out_date|date:'d-m-Y' }}"
+                                                required
+                                            />
+                                        </p>
+                                        <p class="form-group input-number">
+                                            <label for="select-adults"
+                                                >Adults</label
+                                            >
+                                            <br />
+                                            <select
+                                                name="adults_amount"
+                                                id="select-adults"
+                                                class="select-number"
+                                            >
+                                                {% for i in 20|times %}
+                                                    <option value="{{ i|add:1 }}" {% if i|add:1 == adults_amount %}selected="selected"{% endif %}>{{ i|add:1 }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </p>
+                                        <p class="form-group input-number">
+                                            <label for="select-children"
+                                                >Childrens</label
+                                            >
+                                            <br />
+                                            <select
+                                                name="children_amount"
+                                                id="select-children"
+                                                class="select-number"
+                                            >
+                                                {% for i in 10|times %}
+                                                    <option value="{{ i }}" {% if i == children_amount %}selected="selected"{% endif %}>{{ i }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </p>
+                                        <p class="form-group">
+                                            <label for="select_rooms"
+                                                >Room</label
+                                            >
+                                            <br />
+                                            <select
+                                                name="rooms_amount"
+                                                id="select_rooms"
+                                                class="select-number"
+                                            >
+                                                {% for i in total_room|length|times %}
+                                                    <option value="{{ i|add:1 }}" {% if i|add:1 == rooms_amount %}selected="selected"{% endif %}>{{ i|add:1 }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </p>
+                                        <p class="form-group">
+                                            <input
+                                                type="submit"
+                                                class="button"
+                                                value="Check Avaiability"
+                                            />
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="infor-hotel">
+                                <p class="hotel-name font-Megante">An Khang Hotel</p>
+                                <p class="hotel-address">04 Hoang Van Thu, Sa Pa, Lao Cai</p>
+                                <p class="hotel-tel">Tel: </p>
+                                <p class="hotel-mail">Mail: </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 

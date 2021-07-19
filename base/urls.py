@@ -8,4 +8,5 @@ urlpatterns = [
     path('dining/', include('menu.urls')),
     path('about-us/', views.AboutUsPage.as_view(), name='aboutUs-page'),
     path('contact/', views.ContactPage.as_view(), name='contact-page'),
+    path('booking-confirmation/', include('booking.urls')),
 ]

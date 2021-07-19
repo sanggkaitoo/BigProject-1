@@ -1,0 +1,24 @@
+.content-thanks {
+    margin-top: 70px;
+    margin-bottom: 100px;
+}
+
+.content-thanks h4 {
+    margin: 30px 0;
+}
+
+.booking-details {
+    margin-bottom: 50px;
+}
+
+.booking-details .block-content {
+    border-right: 1px dotted rgb(32, 32, 32);
+}
+
+.booking-details .block-content:last-child {
+    border: none;
+}
+
+.label-details {
+    font-size: .9em;
+}

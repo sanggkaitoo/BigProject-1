@@ -1008,4 +1008,9 @@ a {
     color: #9b9b9b;
     padding: 20px 0;
 }
+
+.copyright {
+    float: right;
+}
+
 /* ====================== [ End Footer Style ] ====================== */

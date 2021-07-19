@@ -46,11 +46,11 @@
                     <p>Explore</p>
                 </div>
                 <div class="footer-items">
-                    <div><a href="">Home</a></div>
-                    <div><a href="">Rooms</a></div>
-                    <div><a href="">Dining</a></div>
-                    <div><a href="">About</a></div>
-                    <div><a href="">Contact</a></div>
+                    <div><a href="{% url 'home-page' %}">Home</a></div>
+                    <div><a href="{% url 'romes-page' %}">Rooms</a></div>
+                    <div><a href="{% url 'dining-page' %}">Dining</a></div>
+                    <div><a href="{% url 'aboutUs-page' %}">About</a></div>
+                    <div><a href="{% url 'contact-page' %}">Contact</a></div>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -58,10 +58,10 @@
                     <p>Social Media</p>
                 </div>
                 <div class="footer-items">
-                    <div><a href="">Facebook</a></div>
-                    <div><a href="">Twitter</a></div>
-                    <div><a href="">Zalo</a></div>
-                    <div><a href="">Instagram</a></div>
+                    <div><a href="{{ footer_data.Facebook }}">Facebook</a></div>
+                    <div><a href="{{ footer_data.Twitter }}">Twitter</a></div>
+                    <div><a href="{{ footer_data.Zalo }}">Zalo</a></div>
+                    <div><a href="{{ footer_data.Instagram }}">Instagram</a></div>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -70,16 +70,14 @@
                 </div>
                 <div class="footer-items">
                     <p>
-                        04 Hoang Van Thu Street,
-                        <br/>
-                        Sa Pa, Lao Cai, Viet Nam
+                        {{ footer_data.address }}
                     </p>
                 </div>
                 <div class="title-footer font-Megante">
                     <p>Contact Us</p>
                 </div>
                 <div class="footer-items">
-                    <p>+(84) 85 266 2000</p>
+                    <p>{{ footer_data.phone }}</p>
                 </div>
             </div>
         </div>
@@ -87,10 +85,10 @@
 </div>
 <div class="footer-bottom">
     <div class="container footer-bottom-content">
-        <a href="">
-            <img src="" alt="">
+        <a href="{% url 'index-page' %}">
+            <img width="140px" src="{{ common_data.logo_navbar.url }}" alt="">
         </a>
-        <p>Copyright 2021 - Design by Sang Kaito</p>
+        <p class="copyright">Copyright 2021 - Design by Sang Kaito</p>
     </div>
 </div>
 </div>

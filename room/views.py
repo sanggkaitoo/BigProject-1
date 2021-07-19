@@ -8,9 +8,6 @@ from datetime import datetime
 from operator import itemgetter
 
 
-common_data = base.commonPage.objects.latest('id')
-
-
 class RoomsPage(ListView):
     def get(self, request):
         rooms_data = base.roomsPage.objects.latest('id')
@@ -40,9 +37,12 @@ def searchRoom(request):
     if request.method == "POST":
         check_in_date = datetime.strptime(request.POST.get('check_in_date'), "%d-%m-%Y").date()
         check_out_date = datetime.strptime(request.POST.get('check_out_date'), "%d-%m-%Y").date()
+        night_amount = (check_out_date - check_in_date).days
         adults_amount = int(request.POST.get('adults_amount'))
         children_amount = int(request.POST.get('children_amount'))
         rooms_amount = int(request.POST.get('rooms_amount'))
+
+        total_room = room.Room.objects.all()
 
         booking_data = booking.Booking.objects.filter(checkout__gte=check_in_date, checkin__lte=check_out_date)
 
@@ -69,13 +69,18 @@ def searchRoom(request):
                     recommend_room.append(temp)
                     break
         else:
-            sort = sorted(room_type_amount, key=itemgetter(0))
+            sort = sorted(room_type_amount, key=itemgetter(0), reverse=True)
             count = rooms_amount
             i = 0
-            while count != 0:
-                count = count - sort[i][0]
-                temp = [sort[i][0], sort[i][1]]
-                recommend_room.append(temp)
+            while count > 0:
+                if count > sort[i][0]:
+                    count = count - sort[i][0]
+                    temp = [sort[i][0], sort[i][1]]
+                    recommend_room.append(temp)
+                else:
+                    temp = [count, sort[i][1]]
+                    recommend_room.append(temp)
+                    count = count - sort[i][0]
                 i = i + 1
 
         # Tính tổng giá tiền recommend
@@ -85,7 +90,13 @@ def searchRoom(request):
 
         return render(request, 'pages/search-rooms.html', {'recommend_room': recommend_room,
                                                            'total': total,
+                                                           'night_amount': night_amount,
                                                            'room_type_amount': room_type_amount,
                                                            'check_in_date': check_in_date,
                                                            'check_out_date': check_out_date,
-                                                           'rooms_amount': rooms_amount})
+                                                           'rooms_amount': rooms_amount,
+                                                           'adults_amount': adults_amount,
+                                                           'children_amount': children_amount,
+                                                           'total_room': total_room})
+    else:
+        return render(request, 'pages/search-rooms.html')

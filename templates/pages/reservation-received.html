@@ -1,10 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'pages/base/base.html' %}
+{% load static %}
+{% load mathfilters %}
+{% load my_filters %}
+
+{% block cssblock %}
+
+    <link rel="stylesheet" href="{% static 'css/Rome/rome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/room-part.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/search-rooms.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/booking-confirm.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/reservation-received.css' %}" />
+
+{% endblock %}
+
+{% block content %}
+
+    <div id="content-container">
+        <div class="container">
+            <div class="title-booking-confirm">
+                <h3 class="font-Megante text-center">Reservation Received</h3>
+            </div>
+            <div class="content-thanks">
+                <p>Thank you for your payment. Your transaction has been completed.</p>
+                <h4>Booking Details</h4>
+                <div class="booking-details row">
+                    <div class="col-lg-2 block-content">
+                        <span class="label-details">Booking ID:</span>
+                        <br>
+                        <span class="font-Montserrat-B">{{ payment_id.pk }}</span>
+                    </div>
+                    <div class="col-lg-3 block-content">
+                        <span class="label-details">Check-in:</span>
+                        <br>
+                        <span class="font-Montserrat-B">{{ payment_id.checkin }}</span>
+                    </div>
+                    <div class="col-lg-3 block-content">
+                        <span class="label-details">Check-out:</span>
+                        <br>
+                        <span class="font-Montserrat-B">{{ payment_id.checkout }}</span>
+                    </div>
+                    <div class="col-lg-2 block-content">
+                        <span class="label-details">Total:</span>
+                        <br>
+                        <span class="font-Montserrat-B">${{ payment_id.amount }}</span>
+                    </div>
+                    <div class="col-lg-2 block-content">
+                        <span class="label-details">Status</span>
+                        <br>
+                        <span class="font-Montserrat-B">
+                            {% if payment_id.status %}
+                                Done
+                            {% else %}
+                                Not done yet
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+                <h4>Payment Details</h4>
+                <div class="booking-details row">
+                    <div class="col-lg-2 block-content">
+                        <span class="label-details">Payment ID:</span>
+                        <br>
+                        <span class="font-Montserrat-B">{{ payment_id.pk }}</span>
+                    </div>
+                    <div class="col-lg-3 block-content">
+                        <span class="label-details">Date:</span>
+                        <br>
+                        <span class="font-Montserrat-B">{{ payment_id.paymentDate }}</span>
+                    </div>
+                    <div class="col-lg-3 block-content">
+                        <span class="label-details">Payment Method:</span>
+                        <br>
+                        <span class="font-Montserrat-B">{{ payment_id.paymentType }}</span>
+                    </div>
+                    <div class="col-lg-2 block-content">
+                        <span class="label-details">Total:</span>
+                        <br>
+                        <span class="font-Montserrat-B">${{ payment_id.amount }}</span>
+                    </div>
+                    <div class="col-lg-2 block-content">
+                        <span class="label-details">Status</span>
+                        <br>
+                        <span class="font-Montserrat-B">
+                            {% if payment_id.status %}
+                                Completed
+                            {% else %}
+                                Not completed
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block jsblock %}
+
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/StickyKit/jquery.sticky-kit.js' %}"></script>
+    <script src="{% static 'js/search-rooms.js' %}"></script>
+    <script src="{% static 'js/booking-confirm.js' %}"></script>
+    <script src="{% static 'js/reservation-received.js' %}"></script>
+
+{% endblock %}

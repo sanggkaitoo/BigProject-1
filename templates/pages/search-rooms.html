@@ -1,9 +1,11 @@
 {% extends 'pages/base/base.html' %}
 {% load static %}
 {% load mathfilters %}
+{% load my_filters %}
 
 {% block cssblock %}
 
+    <link rel="stylesheet" href="{% static 'css/Rome/rome.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/index.css' %}" />
     <link rel="stylesheet" href="{% static 'css/home.css' %}" />
     <link rel="stylesheet" href="{% static 'css/room-part.css' %}" />
@@ -23,7 +25,8 @@
                             </p>
                         </div>
                         <div class="room-recommend-wrap">
-                            <form action="" class="form-recommend">
+                            <form action="{% url 'booking-confirm' %}" method="POST" class="form-recommend">
+                                {% csrf_token %}
                                 {% for item in recommend_room %}
                                     <div class="room-recommend-item row">
                                         <div class="col-lg-10 name-recommend-item">
@@ -31,20 +34,24 @@
                                             <p>Max occupancy: {{ item.1.capacity_adults }} adults, {{ item.1.capacity_children }} children</p>
                                         </div>
                                         <div class="col-lg-2 price-recommend-item">
-                                            <p>${{ item.0|mul:item.1.price }}</p>
+                                            <p>${{ item.0|mul:item.1.price|mul:night_amount }}</p>
                                         </div>
                                     </div>
+                                    <input type="hidden" value="{{ item.0 }}" name="{{ item.1.room_type }}" class="amount_{{ item.1.room_type }}">
                                 {% endfor %}
                                 <div class="total-recommend">
-                                    <p>Total: ${{ total }}</p>
+                                    <p>Total: ${{ total|mul:night_amount }}</p>
                                 </div>
+                                <input type="hidden" value="{{ check_in_date|date:'d-m-Y' }}" name="check_in_date">
+                                <input type="hidden" value="{{ check_out_date|date:'d-m-Y' }}" name="check_out_date">
                                 <div class="button-recommend">
-                                    <input class="button" type="button" value="Confirm Reservation">
+                                    <input class="button confirm-button" type="submit" value="Confirm Reservation">
                                 </div>
                                 <div class="clear"></div>
                             </form>
                         </div>
                         <div class="room-list-wrap">
+                            <h3 class="font-Megante other-choice">Do you want the other choice?</h3>
                             {% for room_type_items in room_type_amount %}
                                 <div class="rooms-detail-fit">
                                     <a href="{% url 'rooms-detail' room_type_items.1.pk %}">
@@ -63,23 +70,30 @@
                                     <hr>
                                     <div class="rooms-amount row">
                                         <div class="col-lg-6 input-wrap">
-                                            <p><select name="room-number" id="room-number">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                            </select> of accommodations available</p>
+                                            <p><select name="room-number" class="select-room-add">
+                                                {% for i in room_type_items.0|times %}
+                                                    <option value="{{ i|add:1 }}">{{ i|add:1 }}</option>
+                                                {% endfor %}
+                                            </select> of {{ room_type_items.0 }} accommodations available</p>
                                         </div>
                                         <div class="col-lg-6 remove-wrap">
-                                            <p>1 x "Signature Room" has been added to your reservation</p>
-                                            <a href="">Remove</a>
+                                            <p><span class="add-number"></span> x "{{ room_type_items.1.room_type }} Room" has been added to your reservation</p>
+                                            <input class="remove-button" type="button" value="Remove">
                                         </div>
                                     </div>
-                                    <input class="button" type="button" value="Book">
-                                    <input class="button" type="button" value="Confirm Reservation">
+                                    <input class="button button-add" type="button" value="Add to reservation">
                                 </div>
                             {% endfor %}
                         </div>
+                        <form action="{% url 'booking-confirm' %}" method="POST" class="other-book">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ check_in_date|date:'d-m-Y' }}" name="check_in_date">
+                            <input type="hidden" value="{{ check_out_date|date:'d-m-Y' }}" name="check_out_date">
+                            {% for i in room_type_amount %}
+                                <input type="hidden" value="0" name="{{ i.1.room_type }}" class="amount_{{ i.1.room_type }}">
+                            {% endfor %}
+                            <input class="button button-reservation confirm-button" type="submit" value="Confirm Reservation">
+                        </form>
                     </div>
                     <div class="col-lg-4 book-now-ready-to-book-wrap">
                         <div class="slidebar-wrap">
@@ -89,7 +103,8 @@
                                 </div>
                                 <p class="text-required">Required fields are followed by *</p>
                                 <div class="form-check-wrap">
-                                    <form class="form-check font-Montserrat-L" action="search-availability">
+                                    <form method="POST" action="{% url 'search-result' %}" class="form-check font-Montserrat-L">
+                                        {% csrf_token %}
                                         <p class="form-group">
                                             <label for="input_from">Check-in *</label>
                                             <input
@@ -97,6 +112,9 @@
                                                 class="form-control"
                                                 id="input_from"
                                                 placeholder="Check-in Date"
+                                                name="check_in_date"
+                                                value="{{ check_in_date|date:'d-m-Y' }}"
+                                                required
                                             />
                                         </p>
                                         <p class="form-group">
@@ -106,6 +124,9 @@
                                                 class="form-control"
                                                 id="input_to"
                                                 placeholder="Check-out Date"
+                                                name="check_out_date"
+                                                value="{{ check_out_date|date:'d-m-Y' }}"
+                                                required
                                             />
                                         </p>
                                         <p class="form-group input-number">
@@ -114,63 +135,43 @@
                                             >
                                             <br />
                                             <select
-                                                name="select-adults"
+                                                name="adults_amount"
                                                 id="select-adults"
                                                 class="select-number"
                                             >
-                                                <option
-                                                    value="1"
-                                                    selected="selected"
-                                                >
-                                                    1
-                                                </option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
-                                                <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                                <option value="20">20</option>
+                                                {% for i in 20|times %}
+                                                    <option value="{{ i|add:1 }}" {% if i|add:1 == adults_amount %}selected="selected"{% endif %}>{{ i|add:1 }}</option>
+                                                {% endfor %}
                                             </select>
                                         </p>
                                         <p class="form-group input-number">
-                                            <label for="select-childrensinput-number"
+                                            <label for="select-children"
                                                 >Childrens</label
                                             >
                                             <br />
                                             <select
-                                                name="select-adults"
-                                                id="select-childrens"
+                                                name="children_amount"
+                                                id="select-children"
                                                 class="select-number"
                                             >
-                                                <option
-                                                    value="0"
-                                                    selected="selected"
-                                                >
-                                                    0
-                                                </option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
+                                                {% for i in 10|times %}
+                                                    <option value="{{ i }}" {% if i == children_amount %}selected="selected"{% endif %}>{{ i }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </p>
+                                        <p class="form-group">
+                                            <label for="select_rooms"
+                                                >Room</label
+                                            >
+                                            <br />
+                                            <select
+                                                name="rooms_amount"
+                                                id="select_rooms"
+                                                class="select-number"
+                                            >
+                                                {% for i in total_room|length|times %}
+                                                    <option value="{{ i|add:1 }}" {% if i|add:1 == rooms_amount %}selected="selected"{% endif %}>{{ i|add:1 }}</option>
+                                                {% endfor %}
                                             </select>
                                         </p>
                                         <p class="form-group">
@@ -196,8 +197,8 @@
         </div>
 
 {% endblock %}
-
 {% block jsblock %}
+
 
     <script src="{% static 'js/index.js' %}"></script>
     <script src="{% static 'js/StickyKit/jquery.sticky-kit.js' %}"></script>

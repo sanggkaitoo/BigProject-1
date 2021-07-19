@@ -57,7 +57,7 @@
                             <form action="{% url 'search-result' %}" method="POST">
                                 {% csrf_token %}
                                 <p class="form-group">
-                                    <label for="input_from">Check-in</label>
+                                    <label for="input_from">Check-in *</label>
                                     <input
                                             type="text"
                                             class="form-control"
@@ -68,7 +68,7 @@
                                     />
                                 </p>
                                 <p class="form-group">
-                                    <label for="input_to">Check-out</label>
+                                    <label for="input_to">Check-out *</label>
                                     <input
                                             type="text"
                                             class="form-control"
