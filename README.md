@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img height=200px src="https://github.com/sanggkaitoo/BigProject-1/blob/main/media/Image/logo/Logo-BG.png" alt="Project logo"></a>
+ <img height=100px src="https://github.com/sanggkaitoo/BigProject-1/blob/main/media/Image/logo/Logo-BG.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">WEBSITE BOOKING HOTEL</h3>
