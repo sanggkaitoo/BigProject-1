@@ -28,7 +28,7 @@
 - [Authors](#authors)
 
 ## 🧐 About <a name = "about"></a>
-This is my fisrt Big project at Hanoi University of Sience and Technology.
+This is my first Big project at Hanoi University of Sience and Technology.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
